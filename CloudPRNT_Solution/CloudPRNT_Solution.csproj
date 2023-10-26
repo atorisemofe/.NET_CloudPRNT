@@ -14,7 +14,6 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Data\" />
-    <None Remove="Views\HelloWorld\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="StarMicronics.CloudPRNT-Utility" Version="1.1.2" />
@@ -29,7 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Views\HelloWorld\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\PrintQueue.cs">
