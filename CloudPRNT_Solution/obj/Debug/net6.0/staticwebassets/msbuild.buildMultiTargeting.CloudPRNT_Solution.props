@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/CloudPRNT_Solution.props" />
+</Project>

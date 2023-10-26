@@ -1,0 +1,15 @@
+[align: center][font: a]\
+[image: url https://star-emea.com/wp-content/uploads/2015/01/logo.jpg; width 60%; min-width 48mm]\
+[magnify: width 2; height 1]
+This is a Star Markup Document!
+
+[magnify: width 3; height 2]Columns[magnify]
+[align: left]\
+[column: left: Item 1;      right: $10.00]
+[column: left: Item 2;      right: $9.95]
+[column: left: Item 3;      right: $103.50]
+[align: centre]\
+[barcode: type code39; data 123456789012; height 15mm; module 0; hri]
+[align]\
+Thank you for trying the new Star Document Markup Language\ we hope you will find it useful. Please let us know!
+[cut: feed; partial]
