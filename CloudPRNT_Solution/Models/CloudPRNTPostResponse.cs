@@ -9,6 +9,7 @@ namespace CloudPRNT_Solution.Models
 		public bool jobReady { get; set; }
 		public List<string>? mediaTypes { get; set; }
 		public string? jobToken { get; set; }
+		public List<ClientActionRequest> clientAction { get; set; }
 
 	}
 

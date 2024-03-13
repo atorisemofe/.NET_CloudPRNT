@@ -1,42 +1,24 @@
 ﻿<Properties StartupConfiguration="{A8E9A6E9-737F-4123-96AF-B3EB0BC1931E}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="CloudPRNT_Solution/Views/PrintQueue/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CloudPRNT_Solution/Controllers/CloudPRNTController.cs">
     <Files>
-      <File FileName="CloudPRNT_Solution/Controllers/CloudPRNTController.cs" Line="86" Column="71" />
-      <File FileName="CloudPRNT_Solution/appsettings.json" Line="1" Column="1" />
-      <File FileName="CloudPRNT_Solution/Program.cs" Line="20" Column="4" />
-      <File FileName="CloudPRNT_Solution/Controllers/CloudPRNTDeleteQuery.cs" Line="1" Column="1" />
-      <File FileName="CloudPRNT_Solution/Controllers/HelloWorldController.cs" Line="1" Column="1" />
-      <File FileName="CloudPRNT_Solution/Views/Home/Index.cshtml" Line="5" Column="15" />
-      <File FileName="CloudPRNT_Solution/Controllers/HomeController.cs" Line="1" Column="1" />
-      <File FileName="CloudPRNT_Solution/Models/PrintQueue.cs" Line="1" Column="1" />
-      <File FileName="CloudPRNT_Solution/Controllers/PrintQueueController.cs" Line="10" Column="19" />
-      <File FileName="CloudPRNT_Solution/Models/SeedData.cs" Line="18" Column="1" />
-      <File FileName="CloudPRNT_Solution/Views/Home/Print.cshtml" Line="1" Column="1" />
-      <File FileName="CloudPRNT_Solution/Views/Shared/_Layout.cshtml" Line="29" Column="116" />
-      <File FileName="CloudPRNT_Solution/Views/PrintQueue/Edit.cshtml" Line="35" Column="21" />
-      <File FileName="CloudPRNT_Solution/Views/PrintQueue/Create.cshtml" Line="1" Column="1" />
-      <File FileName="CloudPRNT_Solution/Views/PrintQueue/Index.cshtml" Line="7" Column="39" />
+      <File FileName="CloudPRNT_Solution/Controllers/CloudPRNTController.cs" Line="230" Column="32" />
+      <File FileName="CloudPRNT_Solution/Controllers/PrintQueueController.cs" Line="65" Column="42" />
+      <File FileName="CloudPRNT_Solution/Controllers/GenerateReceipt.cs" Line="86" Column="18" />
+      <File FileName="CloudPRNT_Solution/Program.cs" Line="41" Column="1" />
+      <File FileName="CloudPRNT_Solution/markup11478.stm" Line="16" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CloudPRNT_Solution" expanded="True">
             <Node name="CloudPRNT_Solution" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
               <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="PrintQueue" expanded="True">
-                  <Node name="Index.cshtml" selected="True" />
-                </Node>
+                <Node name="PrintQueue" expanded="True" />
                 <Node name="Shared" expanded="True" />
               </Node>
             </Node>
@@ -48,7 +30,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.CloudPRNT__Solution PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.CloudPRNT__Solution PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

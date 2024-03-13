@@ -50,6 +50,12 @@ namespace CloudPRNT_Solution.Controllers
             return View();
         }
 
+        // GET: PrintQueue/Drawer
+        public IActionResult Drawer()
+        {
+            return View();
+        }
+
         // POST: PrintQueue/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -62,6 +68,7 @@ namespace CloudPRNT_Solution.Controllers
                 var printerMacLower = printQueue.PrinterMac.ToLower();
                 var customerName = printQueue.OrderName.ToString();
                 StringBuilder OrderContent = new StringBuilder();
+                //OrderContent.Append("\x07");
                 OrderContent.Append("[align: center][font: a]\n");
                 OrderContent.Append("[image: url http://star-emea.com/wp-content/uploads/2015/01/logo.jpg; width 60%; min-width 48mm]\n");
                 OrderContent.Append("[magnify: width 2; height 2]\n");
@@ -76,6 +83,44 @@ namespace CloudPRNT_Solution.Controllers
                 OrderContent.Append("[align]\\");
                 OrderContent.Append("Thank you for trying the new Star Document Markup Language\\ we hope you will find it useful. Please let us know!");
                 OrderContent.Append("[cut: feed; partial]");
+
+                printQueue.PrinterMac = printerMacLower;
+                printQueue.OrderContent = OrderContent.ToString();
+                //var test = new GenerateReceipt.Print(printQueue.PrinterMac, printQueue.OrderName, printQueue.OrderDate);
+                _context.Add(printQueue);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(printQueue);
+        }
+
+        // POST: PrintQueue/Drawer
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Drawer([Bind("Id,PrinterMac,OrderName,OrderDate")] PrintQueue printQueue)
+        {
+            if (ModelState.IsValid)
+            {
+                var printerMacLower = printQueue.PrinterMac.ToLower();
+                var customerName = printQueue.OrderName.ToString();
+                StringBuilder OrderContent = new StringBuilder();
+                //OrderContent.Append("\x07");
+                //OrderContent.Append("[align: center][font: a]\n");
+                //OrderContent.Append("[image: url http://star-emea.com/wp-content/uploads/2015/01/logo.jpg; width 60%; min-width 48mm]\n");
+                //OrderContent.Append("[magnify: width 2; height 2]\n");
+                //OrderContent.Append("Customer Name: " + customerName + "\n");
+                //OrderContent.Append("[magnify: width 3; height 2]Columns[magnify]\n");
+                //OrderContent.Append("[align: left]\n");
+                //OrderContent.Append("[column: left: Item 1;      right: $10.00]\n");
+                //OrderContent.Append("[column: left: Item 2;      right: $9.95]\n");
+                //OrderContent.Append("[column: left: Item 3;      right: $103.50]\n");
+                //OrderContent.Append("[align: centre]\n");
+                //OrderContent.Append("[barcode: type code39; data 123456789012; height 15mm; module 0; hri]\n");
+                //OrderContent.Append("[align]\\");
+                //OrderContent.Append("Thank you for trying the new Star Document Markup Language\\ we hope you will find it useful. Please let us know!");
+                //OrderContent.Append("[cut: feed; partial]");
 
                 printQueue.PrinterMac = printerMacLower;
                 printQueue.OrderContent = OrderContent.ToString();
@@ -122,6 +167,7 @@ namespace CloudPRNT_Solution.Controllers
                     var printerMacLower = printQueue.PrinterMac.ToLower();
                     var customerName = printQueue.OrderName.ToString();
                     StringBuilder OrderContent = new StringBuilder();
+
                     OrderContent.Append("[align: center][font: a]\n");
                     OrderContent.Append("[image: url http://star-emea.com/wp-content/uploads/2015/01/logo.jpg; width 60%; min-width 48mm]\n");
                     OrderContent.Append("[magnify: width 2; height 2]\n");

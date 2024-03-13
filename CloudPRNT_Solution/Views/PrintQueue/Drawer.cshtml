@@ -1,18 +1,17 @@
 @model CloudPRNT_Solution.Models.PrintQueue
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Drawer";
 }
 
-<h1>Create</h1>
+<h1>Open Drawer</h1>
 
-<h4>PrintQueue</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Drawer">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
             <div class="form-group">
                 <label asp-for="PrinterMac" class="control-label"></label>
                 <input asp-for="PrinterMac" class="form-control" />
@@ -23,14 +22,15 @@
                 <input asp-for="OrderName" class="form-control" />
                 <span asp-validation-for="OrderName" class="text-danger"></span>
             </div>
+            <div><p></p></div>
             <div class="form-group">
                 <label asp-for="OrderDate" class="control-label"></label>
-                <input asp-for="OrderDate" class="form-control" />
+                <input asp-for="OrderDate" type="datetime" value="@DateTime.Now" />
                 <span asp-validation-for="OrderDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <h3></h3>
-                <input type="submit" value="Print" class="btn btn-primary" />
+                <input type="submit" value="Open Drawer" class="btn btn-primary" />
             </div>
         </form>
     </div>
