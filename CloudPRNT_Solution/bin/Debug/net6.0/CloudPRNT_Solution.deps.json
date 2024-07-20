@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "CloudPRNT_Solution/1.0.0": {
         "dependencies": {
+          "MQTTnet": "4.3.6.1152",
           "Microsoft.EntityFrameworkCore.Design": "7.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.12",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.12",
@@ -1395,6 +1396,14 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.1.1"
+          }
+        }
+      },
+      "MQTTnet/4.3.6.1152": {
+        "runtime": {
+          "lib/net6.0/MQTTnet.dll": {
+            "assemblyVersion": "4.3.6.1152",
+            "fileVersion": "4.3.6.1152"
           }
         }
       },
@@ -3135,6 +3144,13 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "MQTTnet/4.3.6.1152": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XBgqx60FIWiBqTiLNF40EIhENLrLDzE3I9ujzZ7343QCeAWTHP70fO0mN6LeElSfubzfRSugLpPnd0cZiccUOw==",
+      "path": "mqttnet/4.3.6.1152",
+      "hashPath": "mqttnet.4.3.6.1152.nupkg.sha512"
     },
     "NETStandard.Library/1.6.1": {
       "type": "package",

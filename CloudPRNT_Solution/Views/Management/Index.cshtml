@@ -1,0 +1,72 @@
+@model CloudPRNT_Solution.Models.ComninedTableModel
+
+<meta http-equiv="refresh" content="5">
+
+<h2>Registered CloudPRNT Devices</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Printer Mac</th>
+            <th>Queue ID</th>
+            <th>Dot Width</th>
+            <th>Status</th>
+            <th>Client Type</th>
+            <th>Client Version</th>
+            <th>Last Poll</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <a asp-controller="DeviceTable" asp-action="Create">Add Printer</a>
+        @foreach (var item in Model.Devices)
+        {
+            <tr>
+                <td>@item.PrinterMac</td>
+                <td>@item.QueueID</td>
+                <td>@item.DotWidth</td>
+                <td>@item.Status</td>
+                <td>@item.ClientType</td>
+                <td>@item.ClientVersion</td>
+                <td>@item.LastPoll</td>
+                <td>
+                    <a asp-controller="Print" asp-action="Index" asp-route-mac="@item.PrinterMac">Show</a> |
+                    <a asp-controller="DeviceTable" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h2>Registered Locations</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Location Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <a asp-controller="LocationTable" asp-action="Create">Add Location</a>
+        @foreach (var item in Model.Locations)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.LocationName</td>
+                <td>
+                    <a asp-controller="LocationTable" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div></div>
+<h3>Set Server URL to "http://[server/pc ip address]:7148/CloudPRNT"</h3>
+
+

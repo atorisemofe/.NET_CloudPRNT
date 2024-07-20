@@ -1,0 +1,20 @@
+{
+  "title": "star_cloudprnt_server_setting",
+  "version": "1.0.0",
+  "serverSupportProtocol": [
+    "HTTP",
+    "MQTT"
+  ],
+  "settingForMQTT": {
+    "useTriggerPOST": true,
+    "mqttConnectionSetting": {
+      "hostName": "broker.hivemq.com",
+      "portNumber": 1883,
+      "useTls": false,
+      "authenticationSetting": {
+        "username": "user",
+        "password": "pass"
+      }
+    }
+  }
+}

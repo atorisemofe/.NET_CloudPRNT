@@ -7,6 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PrintQueueContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("PrintQueueContext") ?? throw new InvalidOperationException("Connection string 'PrintQueueContext' not found.")));
 
+builder.Services.AddDbContext<DeviceTableContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DeviceTableContext") ?? throw new InvalidOperationException("Connection string 'DeviceTableContext' not found.")));
+
+builder.Services.AddDbContext<LocationTableContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("LocationTableContext") ?? throw new InvalidOperationException("Connection string 'LocationTableContext' not found.")));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

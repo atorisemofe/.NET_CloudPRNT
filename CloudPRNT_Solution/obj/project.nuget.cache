@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ypcEYUHKO8cjJ3X50Gx4kfZeH5Ql9YOAtabjR4KvbT7otGQUQNNsghAvcZrZXcYw6s1dGeRjYVyAx0MFemUIdg==",
+  "dgSpecHash": "6FOBOcGjvuhS0tubA2BCYB+NJeukj2V39PL+50D96R8XJHDZ0lSWS96dZoMIF8f5d8P/fz9mLQ1B/KM+A9ih4A==",
   "success": true,
-  "projectFilePath": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
+  "projectFilePath": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
   "expectedPackageFiles": [
     "/Users/oreo/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
@@ -76,6 +76,7 @@
     "/Users/oreo/.nuget/packages/microsoft.win32.primitives/4.3.0/microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/Users/oreo/.nuget/packages/mqttnet/4.3.6.1152/mqttnet.4.3.6.1152.nupkg.sha512",
     "/Users/oreo/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
     "/Users/oreo/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
     "/Users/oreo/.nuget/packages/nuget.common/6.3.1/nuget.common.6.3.1.nupkg.sha512",
@@ -192,7 +193,10 @@
     "/Users/oreo/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/Users/oreo/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
+    "/Users/oreo/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
+    "/Users/oreo/.nuget/packages/microsoft.netcore.app.ref/6.0.29/microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
+    "/Users/oreo/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.29/microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512",
+    "/Users/oreo/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.29/microsoft.netcore.app.host.osx-arm64.6.0.29.nupkg.sha512"
   ],
   "logs": []
 }

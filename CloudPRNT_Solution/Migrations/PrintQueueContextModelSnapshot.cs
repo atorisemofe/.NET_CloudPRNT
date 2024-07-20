@@ -23,6 +23,9 @@ namespace CloudPRNT_Solution.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("OpenDrawer")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("OrderContent")
                         .HasColumnType("TEXT");
 

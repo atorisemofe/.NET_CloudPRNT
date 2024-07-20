@@ -19,6 +19,7 @@ namespace CloudPRNT_Solution.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     PrinterMac = table.Column<string>(type: "TEXT", nullable: true),
                     OrderName = table.Column<string>(type: "TEXT", nullable: true),
+                    Opendrawer = table.Column<string>(type: "TEXT", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

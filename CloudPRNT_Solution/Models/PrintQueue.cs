@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CloudPRNT_Solution.Models
@@ -11,7 +12,8 @@ namespace CloudPRNT_Solution.Models
         [DataType(DataType.DateTime)]
         public DateTime OrderDate { get; set; }
         public string? OrderContent { get; set; }
-      
+        public string? OpenDrawer { get; set; }
+
     }
 }
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj": {}
+    "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj": {}
   },
   "projects": {
-    "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj": {
+    "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
+        "projectUniqueName": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
         "projectName": "CloudPRNT_Solution",
-        "projectPath": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
+        "projectPath": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
         "packagesPath": "/Users/oreo/.nuget/packages/",
-        "outputPath": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/obj/",
+        "outputPath": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/oreo/.nuget/NuGet/NuGet.Config"
@@ -20,6 +20,7 @@
           "net6.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,12 +33,21 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MQTTnet": {
+              "target": "Package",
+              "version": "[4.3.6.1152, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -71,10 +81,25 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.29, 6.0.29]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[6.0.29, 6.0.29]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.29, 6.0.29]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -83,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
         }
       }
     }

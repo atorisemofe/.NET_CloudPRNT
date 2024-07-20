@@ -1,0 +1,87 @@
+@{
+    ViewData["Title"] = "Print a Ticket";
+    var printer = ViewBag.MacAddress; // Retrieve the 'mac' value from ViewBag
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="cpphp.css">
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+
+    <script>
+        // Get the printer MAC address from Razor
+        var printer = '@printer'; 
+
+        function PrintATicket() {
+            $.get("/Print/Print", { mac: printer })
+                .done(function(response) {
+                    window.alert("Successfully triggered print: " + response.message);
+                })
+                .fail(function() {
+                    window.alert("An error has occurred.");
+                });
+        }
+
+        function PrintATicketTriggerPost() {
+            $.get("/Print/Print", { mac: printer, protocol: 'mqtt', method: 'request-post' })
+                .done(function(response) {
+                    window.alert("Successfully triggered print: " + response.message);
+                })
+                .fail(function() {
+                    window.alert("An error has occurred.");
+                });
+        }
+
+        function PrintATicketPassUrl() {
+            $.get("/Print/Print", { mac: printer, protocol: 'mqtt', method: 'print-job', jobType: 'url' })
+                .done(function(response) {
+                    window.alert("Successfully triggered print: " + response.message);
+                })
+                .fail(function() {
+                    window.alert("An error has occurred.");
+                });
+        }
+
+        function PrintATicketAllMqtt() {
+            $.get("/Print/Print", { mac: printer, protocol: 'mqtt', method: 'print-job', jobType: 'raw' })
+                .done(function(response) {
+                    window.alert("Successfully triggered print: " + response.message);
+                })
+                .fail(function() {
+                    window.alert("An error has occurred.");
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Please print a ticket</h1>
+    <div class="printButton" onclick="PrintATicket();">
+        Print (HTTP)
+    </div>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h2>To try "Print (MQTT)" below, a CloudPRNT Version MQTT compatible printer is required.</h2>
+
+    <div class="printButton" onclick="PrintATicketTriggerPost();">
+        Print (MQTT : Trigger POST)
+    </div>
+
+    <div class="printButton" onclick="PrintATicketPassUrl();">
+        Print (MQTT : Pass URL)
+    </div>
+
+    <div class="printButton" onclick="PrintATicketAllMqtt();">
+        Print (MQTT : Full MQTT)
+    </div>
+</body>
+</html>
