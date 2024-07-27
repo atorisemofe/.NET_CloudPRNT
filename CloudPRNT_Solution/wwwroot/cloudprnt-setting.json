@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "serverSupportProtocol": ["HTTP","MQTT"],
   "settingForMQTT": {
-    "useTriggerPOST": true,
+    "useTriggerPOST": false,
     "mqttConnectionSetting": {
       "hostName": "broker.hivemq.com",
       "portNumber": 1883,

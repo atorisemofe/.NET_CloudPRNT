@@ -9,10 +9,49 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="cpphp.css">
     <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+    
 
     <script>
         // Get the printer MAC address from Razor
         var printer = '@printer'; 
+
+        $(document).ready(function() {
+            // Initialize SignalR connection
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("/notificationHub")
+                .build();
+
+            connection.on("ReceivePrintResult", function(printSucceeded,status) {
+                console.log("Received print result: " + printSucceeded);
+                if (printSucceeded) {
+                    window.alert('Print succeeded!');
+                } else {
+                    window.alert('Print failed. '+ status);
+                }
+            });
+
+            connection.start()
+                .then(() => {
+                    console.log("SignalR connected.");
+                })
+                .catch(function (err) {
+                    console.error("SignalR connection error: " + err.toString());
+                });
+        });
+
+        async function PrintATicketAllMqtt() {
+            
+            $.get("/Print/Print", { mac: printer, protocol: 'mqtt', method: 'print-job', jobType: 'raw' })
+            .done(function(response) {
+                window.alert("Successfully triggered print: " + response.message);
+            })
+            .fail(function() {
+                window.alert("An error has occurred.");
+            });
+              
+        }
 
         function PrintATicket() {
             $.get("/Print/Print", { mac: printer })
@@ -44,15 +83,6 @@
                 });
         }
 
-        function PrintATicketAllMqtt() {
-            $.get("/Print/Print", { mac: printer, protocol: 'mqtt', method: 'print-job', jobType: 'raw' })
-                .done(function(response) {
-                    window.alert("Successfully triggered print: " + response.message);
-                })
-                .fail(function() {
-                    window.alert("An error has occurred.");
-                });
-        }
     </script>
 </head>
 <body>

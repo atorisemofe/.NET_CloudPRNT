@@ -23,7 +23,7 @@ public class DeviceTableController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> AddPrinter([Bind("Id, PrinterMac, QueueID, DotWidth, Status, ClientType, ClientVerion, LastPoll")] DeviceTable deviceInfo ){
+    public async Task<IActionResult> AddPrinter([Bind("Id, PrinterMac, QueueID, PrintWidth, Status, ClientType, ClientVerion, LastPoll")] DeviceTable deviceInfo ){
 
         if (ModelState.IsValid){
             

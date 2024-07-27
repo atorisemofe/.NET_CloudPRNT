@@ -1,0 +1,65 @@
+@{
+    ViewData["Title"] = "Get Printer Status";
+    var printer = ViewBag.MacAddress; // Retrieve the 'mac' value from ViewBag
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="cpphp.css">
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+
+    <script>
+        // Get the printer MAC address from Razor
+        var printer = '@printer'; 
+
+        $(document).ready(function() {
+            // Initialize SignalR connection
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("/notificationHub")
+                .build();
+
+            connection.on("RecieveStatusResult", function(status) {
+                console.log("Received status result: " + status);
+                if (status != null) {
+                    window.alert("Printer Status: " + status);
+                } else {
+                    window.alert('Printer Status: ' + status);
+                }
+            });
+
+            connection.start()
+                .then(() => {
+                    console.log("SignalR connected.");
+                })
+                .catch(function (err) {
+                    console.error("SignalR connection error: " + err.toString());
+                });
+        });
+
+        function GetStatus() {
+            $.get("/Status/Status", { mac: printer, protocol: 'mqtt', method: 'request-client-status' })
+                .done(function(response) {
+                    window.alert("Successfully requested status: " + response.message);
+                })
+                .fail(function() {
+                    window.alert("An error has occurred.");
+                });
+        }
+
+        
+
+    </script>
+</head>
+<body>
+    <h2>To try "Status (MQTT)" below, a CloudPRNT Version MQTT compatible printer is required.</h2>
+
+    <div class="printButton" onclick="GetStatus();">
+        Status (MQTT : Request Status)
+    </div>
+
+</body>
+</html>

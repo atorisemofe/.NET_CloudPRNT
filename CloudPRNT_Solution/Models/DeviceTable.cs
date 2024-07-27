@@ -10,7 +10,7 @@ namespace CloudPRNT_Solution.Models
         public int Id { get; set; }
         public string? PrinterMac { get; set; }
         public int QueueID { get; set; }
-        public int? DotWidth { get; set; }
+        public string? PrintWidth { get; set; }
         public string? Status { get; set; }
         public string? ClientType { get; set; }
         public string? ClientVersion { get; set; }

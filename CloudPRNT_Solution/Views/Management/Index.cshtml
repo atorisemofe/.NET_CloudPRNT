@@ -1,6 +1,26 @@
 @model CloudPRNT_Solution.Models.ComninedTableModel
 
 <meta http-equiv="refresh" content="5">
+<script>
+function triggerClientAction(request, options, printerMac) {
+    
+    // Construct the URL with query parameters
+    const url = new URL('/Status/ClientAction', window.location.origin);
+    url.searchParams.append('mac', printerMac); // Replace with actual mac value
+    url.searchParams.append('protocol', 'order-client-action');
+    url.searchParams.append('method', 'order-client-action');
+
+    fetch(url, {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Handle the response data
+        // You can also update the DOM or show a message here
+    })
+    .catch(error => console.error('Error:', error));
+}
+</script>
 
 <h2>Registered CloudPRNT Devices</h2>
 
@@ -8,12 +28,12 @@
     <thead>
         <tr>
             <th>Printer Mac</th>
-            <th>Queue ID</th>
-            <th>Dot Width</th>
+            <th>Location ID</th>
+            <th>Print Width</th>
             <th>Status</th>
             <th>Client Type</th>
             <th>Client Version</th>
-            <th>Last Poll</th>
+            @* <th>Last Poll</th> *@
             <th></th>
         </tr>
     </thead>
@@ -24,14 +44,18 @@
             <tr>
                 <td>@item.PrinterMac</td>
                 <td>@item.QueueID</td>
-                <td>@item.DotWidth</td>
+                <td>@item.PrintWidth</td>
                 <td>@item.Status</td>
                 <td>@item.ClientType</td>
                 <td>@item.ClientVersion</td>
-                <td>@item.LastPoll</td>
+                @* <td>@item.LastPoll</td> *@
                 <td>
                     <a asp-controller="Print" asp-action="Index" asp-route-mac="@item.PrinterMac">Show</a> |
-                    <a asp-controller="DeviceTable" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="DeviceTable" asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    <a asp-controller="Status" asp-action="Index" asp-route-mac="@item.PrinterMac">Get Status</a> |
+                    @* <a asp-controller="Status" asp-action="ClientAction" asp-route-mac="@item.PrinterMac asp-route-method="order-client-action">Client Details</a> *@
+                    <a href="#" onclick="triggerClientAction('ClientType', '', '@item.PrinterMac'); return false;">Client Details (MQTT)</a>
+
                 </td>
             </tr>
         }

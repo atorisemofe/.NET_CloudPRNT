@@ -163,7 +163,7 @@ namespace CloudPRNT_Solution.Controllers
                     else if (jobType == "url"){
                         payload["jobType"] = jobType;
                         payload["mediaTypes"] = new List<string> { "text/plain" };
-                        payload["printData"] = "http://192.168.86.24:7148/CloudPRNT/PassURL";
+                        payload["printData"] = "http://192.168.86.209:7148/CloudPRNT/PassURL";
                         payload["printerControl"] = printerControl;
                     }
 
