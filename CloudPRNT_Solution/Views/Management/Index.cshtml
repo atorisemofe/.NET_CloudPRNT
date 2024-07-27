@@ -28,11 +28,11 @@ function triggerClientAction(request, options, printerMac) {
     <thead>
         <tr>
             <th>Printer Mac</th>
-            <th>Location ID</th>
-            <th>Print Width</th>
-            <th>Status</th>
             <th>Client Type</th>
+            <th>Location ID</th>
             <th>Client Version</th>
+            <th>Print Width</th>
+            <th>Status</th>            
             @* <th>Last Poll</th> *@
             <th></th>
         </tr>
@@ -43,11 +43,11 @@ function triggerClientAction(request, options, printerMac) {
         {
             <tr>
                 <td>@item.PrinterMac</td>
-                <td>@item.QueueID</td>
-                <td>@item.PrintWidth</td>
-                <td>@item.Status</td>
                 <td>@item.ClientType</td>
+                <td>@item.QueueID</td>
                 <td>@item.ClientVersion</td>
+                <td>@item.PrintWidth</td>
+                <td>@item.Status</td>     
                 @* <td>@item.LastPoll</td> *@
                 <td>
                     <a asp-controller="Print" asp-action="Index" asp-route-mac="@item.PrinterMac">Show</a> |
