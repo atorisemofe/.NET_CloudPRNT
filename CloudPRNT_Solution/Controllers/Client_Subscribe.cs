@@ -101,10 +101,10 @@ namespace CloudPRNT_Solution.Controllers
                     switch (messageType)
                     {
                         case "client-status":
-                            controller.HandleClientStatus(printerMac, payloadObj);
+                            await controller.HandleClientStatus(printerMac, payloadObj);
                             break;
                         case "print-result":
-                            controller.HandlePrintResult(printerMac, payloadObj);
+                            await controller.HandlePrintResult(printerMac, payloadObj);
                             break;
                         case "client-will":
                             controller.HandleClientWill(printerMac, payloadObj);

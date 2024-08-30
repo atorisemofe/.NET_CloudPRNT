@@ -18,6 +18,7 @@ using System.Text.Json;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+//This file handles CloudPRNT HTTP communication protocol
 
 namespace CloudPRNT_Solution.Controllers
 {
@@ -27,7 +28,15 @@ namespace CloudPRNT_Solution.Controllers
     public class CloudPRNTController : Controller
     {
 
+        private readonly PrintQueueContext _context;
+        private readonly DeviceTableContext _DBcontext;
 
+
+        public CloudPRNTController(PrintQueueContext context, DeviceTableContext _DBContext)
+        {
+            _context = context;
+            _DBcontext = _DBContext;
+        }
         
 
         string BeginTruePostResponse(bool jobReady, string token)
@@ -43,39 +52,6 @@ namespace CloudPRNT_Solution.Controllers
             pollResponse.mediaTypes.AddRange(Document.GetOutputTypesFromType("text/vnd.star.markup"));
             return JsonConvert.SerializeObject(pollResponse, Formatting.Indented);
         }
-
-
-
-        // string BeginFalsePostResponse(bool jobReady)
-        // {
-        //     //PollResponse pollResponses = new PollResponse();
-        //     CloudPRNTPostResponse pollResponse = new CloudPRNTPostResponse
-        //     {
-        //         jobReady = jobReady,
-        //         //mediaTypes = new List<string>(),
-        //         clientAction = new List<Models.ClientActionRequest>
-        //         {
-        //             new Models.ClientActionRequest("GetPollInterval", ""),
-        //             new Models.ClientActionRequest("ClientType", ""),
-        //             new Models.ClientActionRequest("ClientVersion", "")
-        //         }
-        //     };
-        //     //pollResponse.mediaTypes.AddRange(Document.GetOutputTypesFromType("text/vnd.star.markup"));
-        //     // pollResponse.clientAction.Add(new ClientActionRequest { Request = "ClientType", Options = "" });
-        //     // pollResponse.clientAction.Add(new ClientActionRequest { Request = "GetPollInterval", Options = "" });
-        //     // pollResponse.clientAction["Request"] = "Clienttype";
-
-
-        //     return JsonConvert.SerializeObject(pollResponse, Formatting.Indented);
-        // }
-
-        // string BeginTruePostResponsePlusClientAction(bool jobReady, string token)
-        // {
-        //     PollResponse pollResponse = new PollResponse{
-        //         jobReady = jobReady,
-        //     };
-        //     return JsonConvert.SerializeObject(pollResponse, Formatting.Indented);
-        // }
 
         string BeginFalsePostResponse(bool jobReady)
         {
@@ -104,24 +80,16 @@ namespace CloudPRNT_Solution.Controllers
             return printableArea;
         }
 
-        private readonly PrintQueueContext _context;
-        private readonly DeviceTableContext _DBcontext;
-
-
-        public CloudPRNTController(PrintQueueContext context, DeviceTableContext _DBContext)
-        {
-            _context = context;
-            _DBcontext = _DBContext;
-        }
-
+        
         //POST: /CloudPRNT
+        //HTTP POST response
         [HttpPost]
         public async Task<IActionResult> PostCloudPRNT([FromBody] CloudPRNTPostBody request, [FromHeader] CloudPRNTPostHeaders headers)
         {
             var deviceInfo = await _DBcontext.DeviceTable.FirstOrDefaultAsync(d => d.PrinterMac == request.PrinterMAC);
-            if (deviceInfo !=null){
-
             
+            if (deviceInfo !=null)
+            {            
                 string ClientTypes = "";
                 string ClientVersions = "";
                 // string PrintWidth = "";
@@ -133,7 +101,8 @@ namespace CloudPRNT_Solution.Controllers
                 }
                 
                 Console.WriteLine("PrinterMAC: " + request.PrinterMAC + "\nStatusCode: " + request.StatusCode + "\nPrinting In Progress: " + request.PrintingInProgress + "\nStatus: " + request.Status  + "\n\n\n");
-                if (request.clientAction != null){
+                if (request.clientAction != null)
+                {
                     foreach (var action in request.clientAction)
                     {
                         if (action != null)
@@ -216,7 +185,7 @@ namespace CloudPRNT_Solution.Controllers
                     deviceInfo.ClientVersion = ClientVersions;
                     deviceInfo.Status = request.StatusCode?.ToString().Replace("%20"," ");
 
-                    // Save the changes to the database
+                    // Save the changes to the Device Table database
                     _DBcontext.Update(deviceInfo);
                     await _DBcontext.SaveChangesAsync();
                     Console.WriteLine($"device found with PrinterMac: {request.PrinterMAC}" + "Database updated");
@@ -246,10 +215,6 @@ namespace CloudPRNT_Solution.Controllers
                 //}
                 else
                 {
-
-
-                    //var filena = printQueue.OrderName;
-                    //Console.WriteLine("Printer mac: " + request.PrinterMAC + " DateTime: "+ DateTime.Now);
                     Console.WriteLine("POST Request Time: " + DateTime.Now);
                     var code = request.StatusCode.Split("%20")[0];
                     var description = request.StatusCode.Replace("%20", " ");
@@ -258,7 +223,6 @@ namespace CloudPRNT_Solution.Controllers
                     switch (code)
                     {
                         case "200":
-
                             if (deviceInfo.ClientType != null && deviceInfo.ClientVersion != null)
                             {
                                 if (_context.PrintQueue.Any(m => m.PrinterMac == printerMac))
@@ -270,9 +234,7 @@ namespace CloudPRNT_Solution.Controllers
 
                                         bool jobReady = true;
                                         var postresponse = BeginTruePostResponse(jobReady, filenames);
-                                        return Ok(postresponse);
-                                        
-                                        
+                                        return Ok(postresponse);      
                                     }
                                 else
                                 {
@@ -289,7 +251,6 @@ namespace CloudPRNT_Solution.Controllers
                             }
 
                         case "211":
-
                             if (deviceInfo.ClientType != null && deviceInfo.ClientVersion != null)
                             {
                                 if (_context.PrintQueue.Any())
@@ -370,13 +331,14 @@ namespace CloudPRNT_Solution.Controllers
                     
                 }
             }
-            else {
+            else { //If deviceInfo == null
                 Console.WriteLine("Printer Does not Exist in Database\n\n");
             }
             return Ok();
         }
 
-        //GET: /CloudPRNT/PassURL
+        //GET: /CloudPRNT/PassURL 
+        //MQTT url print data
         [HttpGet("PassURL")]
         public IActionResult GetCloudPRNTPassURL()
         {
@@ -386,6 +348,7 @@ namespace CloudPRNT_Solution.Controllers
         }
 
         // GET: /CloudPRNT
+        //HTTP GET response
         [HttpGet]
         public IActionResult GetCloudPRNT([FromQuery] CloudPRNTGETQuery request)
         {
@@ -448,6 +411,7 @@ namespace CloudPRNT_Solution.Controllers
         }
 
         // DELETE: /CloudPRNT
+        //HTTP DELETE handler
         [HttpDelete]
         public IActionResult DeleteCloudPRNT([FromQuery] CloudPRNTDeleteQuery request)
         {
