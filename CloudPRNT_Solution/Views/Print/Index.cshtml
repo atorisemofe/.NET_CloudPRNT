@@ -83,6 +83,16 @@
                 });
         }
 
+        function OpenDrawer() {
+            $.get("/Print/Print", { mac: printer, protocol: 'mqtt', method: 'print-job', jobType: 'raw', drawerAction: 'open-drawer' })
+                .done(function(response) {
+                    window.alert("Successfully triggered drawer: " + response.message);
+                })
+                .fail(function() {
+                    window.alert("An error has occurred.");
+                });
+        }
+
     </script>
 </head>
 <body>
@@ -112,6 +122,10 @@
 
     <div class="printButton" onclick="PrintATicketAllMqtt();">
         Print (MQTT : Full MQTT)
+    </div>
+
+    <div class="printButton" onclick="OpenDrawer();">
+        Open Drawer
     </div>
 </body>
 </html>

@@ -38,7 +38,7 @@ namespace CloudPRNT_Solution.Controllers
         }
 
          // GET: /Print/Print
-        public async Task<IActionResult> Print(string mac, string protocol = null, string method = null, string jobType = null, PrintQueue printQueue = null)
+        public async Task<IActionResult> Print(string mac, string protocol = null, string method = null, string jobType = null, PrintQueue printQueue = null, string drawerAction = null)
         {
             // Process the parameters as needed
             // For example, you might want to log them or use them to perform a print job
@@ -49,7 +49,7 @@ namespace CloudPRNT_Solution.Controllers
             string jobToken = new string(chars.OrderBy(c => random.Next()).Take(16).ToArray());
 
             if (method == "print-job"){
-                await Publish_Application_Message(mac,method,jobType,jobToken);
+                await Publish_Application_Message(mac,method,jobType,jobToken,drawerAction);
             }else if (method == "request-post") {
 
                 //TriggerPost printing
@@ -77,7 +77,7 @@ namespace CloudPRNT_Solution.Controllers
 
                 _context.Add(printQueue);
                 await _context.SaveChangesAsync();
-                await Publish_Application_Message(mac,method,jobType,jobToken);
+                await Publish_Application_Message(mac,method,jobType,jobToken,drawerAction);
 
             }else{
                 //HTTP printing
@@ -114,7 +114,7 @@ namespace CloudPRNT_Solution.Controllers
             return Json(new { success = true, message = "Print triggered.", mac = mac });
         } 
 
-        public static async Task Publish_Application_Message(string mac, string method, string jobType, string jobToken)
+        public static async Task Publish_Application_Message(string mac, string method, string jobType, string jobToken, string drawerAction)
         {
             /*
              * This sample pushes a simple application message including a topic and a payload.
@@ -146,6 +146,7 @@ namespace CloudPRNT_Solution.Controllers
                 };
 
                 printerControl["cutter"] = cutter;
+                // printerControl["cashDrawer"] = "start";
 
                 if (method == "print-job"){
                     topic = "star/cloudprnt/to-device/" + mac + "/" + method;
@@ -154,11 +155,18 @@ namespace CloudPRNT_Solution.Controllers
                     payload["jobToken"] = jobToken;
 
                     if (jobType == "raw"){
-                        payload["jobType"] = jobType;
-                        payload["mediaTypes"] = new List<string> { "text/plain" };
-                        string printDataText = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Full MQTT.";
-                        payload["printData"] = printDataText;
-                        payload["printerControl"] = printerControl;
+                        if (drawerAction == "open-drawer"){
+                            payload["jobType"] = jobType;
+                            payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
+                            string printDataText = "Bw=="; //base64 encoded drawer open command
+                            payload["printData"] = printDataText;
+                        }else{
+                            payload["jobType"] = jobType;
+                            payload["mediaTypes"] = new List<string> { "text/plain" };
+                            string printDataText = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Full MQTT.";
+                            payload["printData"] = printDataText;
+                            payload["printerControl"] = printerControl;
+                        }
                     }
                     else if (jobType == "url"){
                         payload["jobType"] = jobType;
