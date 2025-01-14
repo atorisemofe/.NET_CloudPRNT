@@ -116,87 +116,93 @@ namespace CloudPRNT_Solution.Controllers
 
         public static async Task Publish_Application_Message(string mac, string method, string jobType, string jobToken, string drawerAction)
         {
-            /*
-             * This sample pushes a simple application message including a topic and a payload.
-             *
-             * Always use builders where they exist. Builders (in this project) are designed to be
-             * backward compatible. Creating an _MqttApplicationMessage_ via its constructor is also
-             * supported but the class might change often in future releases where the builder does not
-             * or at least provides backward compatibility where possible.
-             */
-
             var mqttFactory = new MqttFactory();
 
             using (var mqttClient = mqttFactory.CreateMqttClient())
             {
                 var mqttClientOptions = new MqttClientOptionsBuilder()
-                    .WithTcpServer("broker.hivemq.com", 1883)
+                    .WithTcpServer("broker.hivemq.com",1883)
                     .WithCleanSession(true)
                     .Build();
 
-                await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
+                try
+                {
+                    await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
-                var topic = "";
-                
-                var payload = new Dictionary<string, object>();
-                var printerControl = new Dictionary<string, object>();
-                var cutter = new Dictionary<string, object>{
-                    ["type"] = "partial",
-                    ["feed"] = true
-                };
+                    var topic = $"star/cloudprnt/to-device/{mac}/{method}";
 
-                printerControl["cutter"] = cutter;
-                // printerControl["cashDrawer"] = "start";
+                    var payload = new Dictionary<string, object>();
+                    var printerControl = new Dictionary<string, object>();
+                    var cutter = new Dictionary<string, object>
+                    {
+                        ["type"] = "partial",
+                        ["feed"] = true
+                    };
 
-                if (method == "print-job"){
-                    topic = "star/cloudprnt/to-device/" + mac + "/" + method;
-                    
-                    payload["title"] = method;
-                    payload["jobToken"] = jobToken;
+                    printerControl["cutter"] = cutter;
 
-                    if (jobType == "raw"){
-                        if (drawerAction == "open-drawer"){
-                            payload["jobType"] = jobType;
-                            payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
-                            string printDataText = "Bw=="; //base64 encoded drawer open command
-                            payload["printData"] = printDataText;
-                        }else{
+                    if (method == "print-job")
+                    {
+                        payload["title"] = method;
+                        payload["jobToken"] = jobToken;
+
+                        if (jobType == "raw")
+                        {
+                            if (drawerAction == "open-drawer")
+                            {
+                                payload["jobType"] = jobType;
+                                payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
+                                payload["printData"] = "Bw=="; // Base64 encoded drawer open command
+                            }
+                            else
+                            {
+                                payload["jobType"] = jobType;
+                                payload["mediaTypes"] = new List<string> { "text/plain" };
+                                payload["printData"] = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Full MQTT.";
+                                payload["printerControl"] = printerControl;
+                            }
+                        }
+                        else if (jobType == "url")
+                        {
                             payload["jobType"] = jobType;
                             payload["mediaTypes"] = new List<string> { "text/plain" };
-                            string printDataText = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Full MQTT.";
-                            payload["printData"] = printDataText;
+                            payload["printData"] = "http://192.168.86.23:7148/CloudPRNT/PassURL";
                             payload["printerControl"] = printerControl;
                         }
                     }
-                    else if (jobType == "url"){
-                        payload["jobType"] = jobType;
-                        payload["mediaTypes"] = new List<string> { "text/plain" };
-                        payload["printData"] = "http://192.168.86.209:7148/CloudPRNT/PassURL";
-                        payload["printerControl"] = printerControl;
+                    else if (method == "request-post")
+                    {
+                        payload["title"] = method;
                     }
 
-                }else if (method == "request-post") {
-                    topic = "star/cloudprnt/to-device/" + mac + "/" + method;
-                    payload["title"] = method;
+                    // Serialize the payload to a JSON string.
+                    string jsonPayload = JsonSerializer.Serialize(payload);
+
+                    // Convert the JSON string to a byte array.
+                    byte[] payloadBytes = Encoding.UTF8.GetBytes(jsonPayload);
+
+                    var applicationMessage = new MqttApplicationMessageBuilder()
+                        .WithTopic(topic)
+                        .WithPayload(payloadBytes)
+                        .Build();
+
+                    await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
+                    Console.WriteLine("MQTT application message is published.");
                 }
-
-                // Serialize the payload to a JSON string.
-                string jsonPayload = JsonSerializer.Serialize(payload);
-
-                // Convert the JSON string to a byte array.
-                byte[] payloadBytes = Encoding.UTF8.GetBytes(jsonPayload);
-
-                var applicationMessage = new MqttApplicationMessageBuilder()
-                    .WithTopic(topic)
-                    .WithPayload(payloadBytes)
-                    .Build();
-
-                await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
-
-                await mqttClient.DisconnectAsync();
-
-                Console.WriteLine("MQTT application message is published.");
+                catch (MQTTnet.Adapter.MqttConnectingFailedException ex)
+                {
+                    Console.WriteLine($"MQTT connection failed: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+                finally
+                {
+                    await mqttClient.DisconnectAsync();
+                }
             }
         }
+
     }
 }

@@ -25,8 +25,7 @@ builder.Services.AddDbContext<LocationTableContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<MqttMessageRecieved>(); // Add this line
-
-
+// builder.Services.AddSingleton<IHostedService, PollingScheduler>();
 
 var app = builder.Build();
 

@@ -167,7 +167,7 @@ namespace CloudPRNT_Solution.Controllers
                     jobToken = jobtoken,
                     jobType = "url",
                     mediaTypes = new[] { "application/vnd.star.starprnt" },
-                    printData = "http://192.168.86.24:7148/CloudPRNT"
+                    printData = "http://192.168.86.23:7148/CloudPRNT"
                     //printerControl = new { cashDrawer = openDrawer }
                 };
 
