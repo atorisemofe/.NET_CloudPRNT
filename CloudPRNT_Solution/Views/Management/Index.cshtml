@@ -91,6 +91,15 @@ function triggerClientAction(request, options, printerMac) {
 </table>
 
 <div></div>
-<h3>Set Server URL to "http://[server/pc ip address]:7148/CloudPRNT"</h3>
+<h3 id="serverUrlText"></h3>
+
+<script>
+    // Assuming you want to update the URL based on the current webpage's address
+    var currentUrl = window.location.origin;  // Gets the base URL without the path
+    var newUrl = currentUrl.replace('/management', '') + '/CloudPRNT';  // Replaces '/management' and adds '/CloudPRNT'
+
+    // Update the h3 text to show the new URL
+    document.getElementById('serverUrlText').innerText = 'Set Server URL to "' + newUrl + '"';
+</script>
 
 
