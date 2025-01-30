@@ -395,8 +395,10 @@ namespace CloudPRNT_Solution.Controllers
         //GET: /CloudPRNT/PassURL 
         //MQTT url print data
         [HttpGet("PassURL")]
-        public IActionResult GetCloudPRNTPassURL()
+        public IActionResult GetCloudPRNTPassURL([FromQuery] CloudPRNTGETQuery request)
         {
+            Console.WriteLine("MQTT Triggered GET Request: " + request.Token + "\nGET Request Time: " + DateTime.Now + "\n\n\n");
+            
             var outputData = new MemoryStream();
             var outputFormat = "application/vnd.star.starprnt";
             
