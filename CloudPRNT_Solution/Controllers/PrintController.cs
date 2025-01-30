@@ -123,7 +123,6 @@ namespace CloudPRNT_Solution.Controllers
                 var mqttClientOptions = new MqttClientOptionsBuilder()
                     .WithTcpServer("broker.hivemq.com",1883)
                     .WithCleanSession(true)
-                    .WithWillQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce)
                     .Build();
 
                 try
@@ -158,7 +157,7 @@ namespace CloudPRNT_Solution.Controllers
                             else
                             {
                                 payload["jobType"] = jobType;
-                                payload["mediaTypes"] = new List<string> { "text/plain" };
+                                payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
 
                                 //test flawless printRaw data
                                 StringBuilder job = new StringBuilder();
