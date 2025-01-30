@@ -158,7 +158,21 @@ namespace CloudPRNT_Solution.Controllers
                             {
                                 payload["jobType"] = jobType;
                                 payload["mediaTypes"] = new List<string> { "text/plain" };
-                                payload["printData"] = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Full MQTT.";
+
+                                //test flawless printRaw data
+                                StringBuilder job = new StringBuilder();
+                                job.Append("[align: centre]\n");
+                                job.Append($"[image: url https://cloudprint.flawlessretail.com/receipt.png]");
+                                job.Append("[cut: feed; partial]");
+                                byte[] jobData = Encoding.UTF8.GetBytes(job.ToString());
+                                // get the requested output media type from the query string
+                                using (var ms = new MemoryStream())
+                                {
+                                    StarMicronics.CloudPrnt.Document.Convert(jobData, "text/vnd.star.markup", ms, "application/vnd.star.starprnt", null);
+                                    payload["printData"] = Convert.ToBase64String(ms.ToArray());
+                                }
+
+                                // payload["printData"] = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Full MQTT.";
                                 payload["printerControl"] = printerControl;
                             }
                         }
