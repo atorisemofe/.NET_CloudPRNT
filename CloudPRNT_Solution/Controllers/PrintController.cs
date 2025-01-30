@@ -123,6 +123,7 @@ namespace CloudPRNT_Solution.Controllers
                 var mqttClientOptions = new MqttClientOptionsBuilder()
                     .WithTcpServer("broker.hivemq.com",1883)
                     .WithCleanSession(true)
+                    .WithWillQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce)
                     .Build();
 
                 try
