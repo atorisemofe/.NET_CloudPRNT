@@ -89,6 +89,34 @@ namespace CloudPRNT_Solution.Controllers
             return JsonConvert.SerializeObject(pollResponse, settings);
         }
 
+        string firwareUpdatePostResponse (bool jobReady, string token)
+        {
+            PollResponse pollResponse = new PollResponse{
+                jobReady = jobReady,
+                mediaTypes = new List<string>()
+            };
+            pollResponse.mediaTypes.Add("application/vnd.star.starconfiguration");
+            return JsonConvert.SerializeObject(pollResponse, Formatting.Indented);
+        }
+
+        string firmwareUpdateGetResponse()
+        {
+            FirmwareConfiguration pollResponse = new FirmwareConfiguration();
+            
+            // Configure JSON serializer settings with SnakeCaseNamingStrategy
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                },
+                Formatting = Formatting.Indented // To maintain the indented formatting
+            };
+
+            // Serialize the response with the settings
+            return JsonConvert.SerializeObject(pollResponse, settings);
+        }
+
         // Method to create the custom response with headers
         IActionResult CreatePollingResponse(string jsonResponse)
         {
@@ -115,7 +143,7 @@ namespace CloudPRNT_Solution.Controllers
                 clientAction = new List<StarMicronics.CloudPrnt.CpMessage.ClientActionRequest>{
                     new StarMicronics.CloudPrnt.CpMessage.ClientActionRequest("ClientType",""),
                     new StarMicronics.CloudPrnt.CpMessage.ClientActionRequest("ClientVersion",""),
-                    new StarMicronics.CloudPrnt.CpMessage.ClientActionRequest("PaperPresentStatusMonitor","disable")
+                    // new StarMicronics.CloudPrnt.CpMessage.ClientActionRequest("PaperPresentStatusMonitor","disable")
                     // new StarMicronics.CloudPrnt.CpMessage.ClientActionRequest("PageInfo","")
                 }
             };
@@ -245,7 +273,7 @@ namespace CloudPRNT_Solution.Controllers
 
                     // Save the changes to the database
                     _DBcontext.Update(deviceInfo);
-                    await _context.SaveChangesAsync();
+                    await _DBcontext.SaveChangesAsync();
                     
                 }           
 
@@ -284,6 +312,10 @@ namespace CloudPRNT_Solution.Controllers
                                         if (printQueueTopItem.OrderName == "reduce polling" || printQueueTopItem.OrderName == "increase polling"){
                                             var postresponse = updatePollingPostResponse(jobReady, filenames);
                                             return Ok(postresponse);
+                                        }
+                                        else if (printQueueTopItem.OrderName == "firmware update"){
+                                            var firmwarePostResponse = firwareUpdatePostResponse(jobReady, filenames);
+                                            return Ok(firmwarePostResponse);
                                         }
                                         else {
                                             var postresponse = BeginTruePostResponse(jobReady, filenames);
@@ -490,6 +522,11 @@ namespace CloudPRNT_Solution.Controllers
                     var getResponse = updatePollingGetResponse(5);
                     return CreatePollingResponse(getResponse);
                 }
+                else if (printQueueItem.OrderName == "firmware update")
+                {
+                    var getResponse = firmwareUpdateGetResponse();
+                    return CreatePollingResponse(getResponse);
+                }
 
             }
             
@@ -522,6 +559,9 @@ namespace CloudPRNT_Solution.Controllers
 
             var config = request.Config;
             Console.WriteLine("Configuration: " + config);
+
+            var firmwareUpdateStatus = request.Firmware;
+            Console.WriteLine("firmware Update Status: " + firmwareUpdateStatus);
 
             PrintQueue printQueueItem;
             

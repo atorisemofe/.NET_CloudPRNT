@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VO0PiWI3htbnMBSHvPyFuXFC5uu+iHFP1WQezH11UzU=",
+  "Hash": "FNH/ieagaE9evNugBXQr5ck0fWGXLIfnXvPfG/V9fc4=",
   "Source": "CloudPRNT_Solution",
   "BasePath": "_content/CloudPRNT_Solution",
   "Mode": "Default",
@@ -1250,6 +1250,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/wwwroot/mC-Label3_Ver1.4(MAIN).bin",
+      "SourceId": "CloudPRNT_Solution",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/wwwroot/",
+      "BasePath": "_content/CloudPRNT_Solution",
+      "RelativePath": "mC-Label3_Ver1.4(MAIN).bin",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/mC-Label3_Ver1.4(MAIN).bin"
+    },
+    {
+      "Identity": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/wwwroot/mC-Label3_Ver250212a(MAIN).bin",
+      "SourceId": "CloudPRNT_Solution",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/wwwroot/",
+      "BasePath": "_content/CloudPRNT_Solution",
+      "RelativePath": "mC-Label3_Ver250212a(MAIN).bin",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/mC-Label3_Ver250212a(MAIN).bin"
     }
   ]
 }

@@ -96,9 +96,9 @@ namespace CloudPRNT_Solution.Controllers
                 OrderContent.Append("Thank you for trying the new Star Document Markup Language\\ we hope you will find it useful. Please let us know!");
                 OrderContent.Append("[cut: feed; partial]");
 
-                printQueue.OrderContent = OrderContent.ToString();
+                // printQueue.OrderContent = OrderContent.ToString();
                 printQueue.PrinterMac = mac;
-                printQueue.OpenDrawer = "no";
+                // printQueue.OpenDrawer = "no";
                 printQueue.OrderName = jobToken;
                 printQueue.OrderDate = DateTime.Now;
 
@@ -123,7 +123,6 @@ namespace CloudPRNT_Solution.Controllers
                 var mqttClientOptions = new MqttClientOptionsBuilder()
                     .WithTcpServer("broker.hivemq.com",1883)
                     .WithCleanSession(true)
-                    .WithWillQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce)
                     .Build();
 
                 try
@@ -158,7 +157,7 @@ namespace CloudPRNT_Solution.Controllers
                             else
                             {
                                 payload["jobType"] = jobType;
-                                payload["mediaTypes"] = new List<string> { "text/plain" };
+                                payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
 
                                 //test flawless printRaw data
                                 StringBuilder job = new StringBuilder();

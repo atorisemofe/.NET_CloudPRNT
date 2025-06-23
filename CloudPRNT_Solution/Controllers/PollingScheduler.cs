@@ -27,14 +27,14 @@ public class PollingScheduler : BackgroundService
         {
             DateTime currentTime = DateTime.Now;
 
-            if (currentTime.Hour == 06 && currentTime.Minute == 47 && currentTime.Second == 0)
+            if (currentTime.Hour == 23 && currentTime.Minute == 55 && currentTime.Second == 0)
             {
-                _logger.LogInformation("It's 11:59 PM. Triggering action to reduce polling.");
+                _logger.LogInformation("It's 11:55 PM. Triggering action to reduce polling.");
                 await AddJobToQueueAsync("reduce polling", stoppingToken); //reduce
                 await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
             }
 
-            if (currentTime.Hour == 12 && currentTime.Minute == 12 && currentTime.Second == 0)
+            if (currentTime.Hour == 05 && currentTime.Minute == 00 && currentTime.Second == 0)
             {
                 _logger.LogInformation("It's 5 AM. Triggering action to increase polling.");
                 await AddJobToQueueAsync("increase polling", stoppingToken);

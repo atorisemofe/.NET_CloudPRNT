@@ -257,6 +257,14 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
+      "Id": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/wwwroot/mC-Label3_Ver1.4(MAIN).bin",
+      "PackagePath": "staticwebassets/mC-Label3_Ver1.4(MAIN).bin"
+    },
+    {
+      "Id": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/wwwroot/mC-Label3_Ver250212a(MAIN).bin",
+      "PackagePath": "staticwebassets/mC-Label3_Ver250212a(MAIN).bin"
+    },
+    {
       "Id": "obj/Debug/net6.0/staticwebassets/msbuild.CloudPRNT_Solution.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
