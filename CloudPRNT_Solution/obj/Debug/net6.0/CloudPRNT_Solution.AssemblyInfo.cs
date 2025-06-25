@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CloudPRNT_Solution")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82fffa415c33dc1aa28660987c3a97363900a26c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bc519438621fcf2f0f3e93bf5360e91e430a1ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("CloudPRNT_Solution")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CloudPRNT_Solution")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
