@@ -18,8 +18,7 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Copy the SQLite database file into the container
-#COPY CloudPRNT_Solution.Data.db /app/data/CloudPRNT_Solution.Data.db
-VOLUME ["/data"]
+COPY CloudPRNT_Solution.Data.db /app/data/CloudPRNT_Solution.Data.db
 
 
 # Set the entry point
