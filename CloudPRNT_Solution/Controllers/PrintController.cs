@@ -96,7 +96,7 @@ namespace CloudPRNT_Solution.Controllers
                 OrderContent.Append("Thank you for trying the new Star Document Markup Language\\ we hope you will find it useful. Please let us know!");
                 OrderContent.Append("[cut: feed; partial]");
 
-                // printQueue.OrderContent = OrderContent.ToString();
+                printQueue.OrderContent = OrderContent.ToString();
                 printQueue.PrinterMac = mac;
                 printQueue.OpenDrawer = "no";
                 printQueue.OrderName = jobToken;
