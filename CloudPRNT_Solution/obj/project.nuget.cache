@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wd08EVGWPxB2zcr4WatG9CvpcfKfOv9nNmrY8cM8IJJo/sFi0SWbGVi2zTwD5Mp3JhOJfuikiD1gwoYh+TgH5A==",
+  "dgSpecHash": "TsRiQXwnL4Q=",
   "success": true,
-  "projectFilePath": "/Users/oreo/Projects/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
+  "projectFilePath": "/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
   "expectedPackageFiles": [
     "/Users/oreo/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
@@ -220,10 +220,7 @@
     "/Users/oreo/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/Users/oreo/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
-    "/Users/oreo/.nuget/packages/microsoft.netcore.app.ref/6.0.29/microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
-    "/Users/oreo/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.29/microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512",
-    "/Users/oreo/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.29/microsoft.netcore.app.host.osx-arm64.6.0.29.nupkg.sha512"
+    "/Users/oreo/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
