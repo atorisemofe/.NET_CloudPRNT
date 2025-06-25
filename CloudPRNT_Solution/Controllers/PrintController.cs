@@ -98,7 +98,7 @@ namespace CloudPRNT_Solution.Controllers
 
                 // printQueue.OrderContent = OrderContent.ToString();
                 printQueue.PrinterMac = mac;
-                // printQueue.OpenDrawer = "no";
+                printQueue.OpenDrawer = "no";
                 printQueue.OrderName = jobToken;
                 printQueue.OrderDate = DateTime.Now;
 
