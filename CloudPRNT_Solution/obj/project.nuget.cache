@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TsRiQXwnL4Q=",
+  "dgSpecHash": "kfE6zg6QW2s=",
   "success": true,
-  "projectFilePath": "/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
+  "projectFilePath": "/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
   "expectedPackageFiles": [
     "/Users/oreo/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/oreo/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",

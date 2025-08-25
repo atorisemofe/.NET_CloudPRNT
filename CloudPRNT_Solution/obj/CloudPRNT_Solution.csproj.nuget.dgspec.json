@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj": {}
+    "/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj": {}
   },
   "projects": {
-    "/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj": {
+    "/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
+        "projectUniqueName": "/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
         "projectName": "CloudPRNT_Solution",
-        "projectPath": "/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
+        "projectPath": "/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution.csproj",
         "packagesPath": "/Users/oreo/.nuget/packages/",
-        "outputPath": "/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/obj/",
+        "outputPath": "/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/oreo/.nuget/NuGet/NuGet.Config"

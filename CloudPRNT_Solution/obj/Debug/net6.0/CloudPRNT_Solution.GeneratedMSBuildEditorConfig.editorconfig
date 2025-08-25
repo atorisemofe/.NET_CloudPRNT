@@ -9,97 +9,97 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CloudPRNT_Solution
 build_property.RootNamespace = CloudPRNT_Solution
-build_property.ProjectDir = /Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/
+build_property.ProjectDir = /Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution
+build_property.MSBuildProjectDirectory = /Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 6.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/DeviceTable/Create.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/DeviceTable/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGV2aWNlVGFibGUvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/DeviceTable/Delete.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/DeviceTable/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGV2aWNlVGFibGUvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Home/Index.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Home/Print.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Home/Print.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QcmludC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Home/Privacy.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/LocationTable/Create.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/LocationTable/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9jYXRpb25UYWJsZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/LocationTable/Delete.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/LocationTable/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9jYXRpb25UYWJsZS9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Management/Index.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Management/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFuYWdlbWVudC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Print/Index.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Print/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJpbnQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Create.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJpbnRRdWV1ZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Delete.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJpbnRRdWV1ZS9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Details.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJpbnRRdWV1ZS9EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Drawer.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Drawer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJpbnRRdWV1ZS9EcmF3ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Edit.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJpbnRRdWV1ZS9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Index.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/PrintQueue/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJpbnRRdWV1ZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Shared/Error.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Status/Index.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Status/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RhdHVzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/_ViewImports.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/_ViewStart.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/oreo/Desktop/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Shared/_Layout.cshtml]
+[/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-92exe9h0el
