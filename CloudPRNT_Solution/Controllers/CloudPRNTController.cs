@@ -163,20 +163,20 @@ namespace CloudPRNT_Solution.Controllers
         public async Task<IActionResult> PostCloudPRNT([FromBody] CloudPRNTPostBody request, [FromHeader] CloudPRNTPostHeaders headers)
         {
             var deviceInfo = await _DBcontext.DeviceTable.FirstOrDefaultAsync(d => d.PrinterMac == request.PrinterMAC);
-            
-            if (deviceInfo !=null)
-            {            
+
+            if (deviceInfo != null)
+            {
                 string ClientTypes = "";
                 string ClientVersions = "";
                 // string PrintWidth = "";
                 // List<Object> PageInfos = new List<object>();
-                
+
                 if (request == null)
                 {
                     Console.WriteLine("Request body cannot be null");
                 }
-                
-                Console.WriteLine("PrinterMAC: " + request.PrinterMAC + "\nStatusCode: " + request.StatusCode + "\nPrinting In Progress: " + request.PrintingInProgress + "\nStatus: " + request.Status  + "\n\n\n");
+
+                Console.WriteLine("PrinterMAC: " + request.PrinterMAC + "\nStatusCode: " + request.StatusCode + "\nPrinting In Progress: " + request.PrintingInProgress + "\nStatus: " + request.Status + "\n\n\n");
                 if (request.clientAction != null)
                 {
                     foreach (var action in request.clientAction)
@@ -249,7 +249,7 @@ namespace CloudPRNT_Solution.Controllers
                             {
                                 Console.WriteLine($"Failed to parse action JSON: {ex.Message}");
                             }
-                            
+
                         }
                         else
                         {
@@ -259,23 +259,24 @@ namespace CloudPRNT_Solution.Controllers
                     // Update the values
                     deviceInfo.ClientType = ClientTypes;
                     deviceInfo.ClientVersion = ClientVersions;
-                    deviceInfo.Status = request.StatusCode?.ToString().Replace("%20"," ");
+                    deviceInfo.Status = request.StatusCode?.ToString().Replace("%20", " ");
 
                     // Save the changes to the Device Table database
                     _DBcontext.Update(deviceInfo);
                     await _DBcontext.SaveChangesAsync();
                     Console.WriteLine($"device found with PrinterMac: {request.PrinterMAC}" + "Database updated");
-                    
+
                 }
-                else{
+                else
+                {
                     Console.WriteLine("No client actions received.");
-                    deviceInfo.Status = request.StatusCode?.ToString().Replace("%20"," ");
+                    deviceInfo.Status = request.StatusCode?.ToString().Replace("%20", " ");
 
                     // Save the changes to the database
                     _DBcontext.Update(deviceInfo);
                     await _DBcontext.SaveChangesAsync();
-                    
-                }           
+
+                }
 
                 if (request.PrintingInProgress)
                 {
@@ -302,27 +303,30 @@ namespace CloudPRNT_Solution.Controllers
                             if (deviceInfo.ClientType != null && deviceInfo.ClientVersion != null)
                             {
                                 if (_context.PrintQueue.Any(m => m.PrinterMac == printerMac))
-                                    {
-                                        Console.WriteLine("Job available and printer Ready to Print " + description);
-                                        PrintQueue printQueueTopItem = _context.PrintQueue.First(m => m.PrinterMac == printerMac);
-                                        var filenames = printQueueTopItem.OrderName;
-                                        Console.WriteLine("POST Filename: " + filenames);
-                                        bool jobReady = true;
+                                {
+                                    Console.WriteLine("Job available and printer Ready to Print " + description);
+                                    PrintQueue printQueueTopItem = _context.PrintQueue.First(m => m.PrinterMac == printerMac);
+                                    var filenames = printQueueTopItem.OrderName;
+                                    Console.WriteLine("POST Filename: " + filenames);
+                                    bool jobReady = true;
 
-                                        if (printQueueTopItem.OrderName == "reduce polling" || printQueueTopItem.OrderName == "increase polling"){
-                                            var postresponse = updatePollingPostResponse(jobReady, filenames);
-                                            return Ok(postresponse);
-                                        }
-                                        else if (printQueueTopItem.OrderName == "firmware update"){
-                                            var firmwarePostResponse = firwareUpdatePostResponse(jobReady, filenames);
-                                            return Ok(firmwarePostResponse);
-                                        }
-                                        else {
-                                            var postresponse = BeginTruePostResponse(jobReady, filenames);
-                                            return Ok(postresponse);
-                                        } 
-                                              
+                                    if (printQueueTopItem.OrderName == "reduce polling" || printQueueTopItem.OrderName == "increase polling")
+                                    {
+                                        var postresponse = updatePollingPostResponse(jobReady, filenames);
+                                        return Ok(postresponse);
                                     }
+                                    else if (printQueueTopItem.OrderName == "firmware update")
+                                    {
+                                        var firmwarePostResponse = firwareUpdatePostResponse(jobReady, filenames);
+                                        return Ok(firmwarePostResponse);
+                                    }
+                                    else
+                                    {
+                                        var postresponse = BeginTruePostResponse(jobReady, filenames);
+                                        return Ok(postresponse);
+                                    }
+
+                                }
                                 else
                                 {
                                     Console.WriteLine("NO Job available but printer Ready to Print " + description);
@@ -331,7 +335,8 @@ namespace CloudPRNT_Solution.Controllers
                                     return Ok(postresponse);
                                 }
                             }
-                            else{
+                            else
+                            {
                                 bool jobReady = false;
                                 var postresponse = BeginFalsePostResponsePlusClientVersion(jobReady);
                                 return Ok(postresponse);
@@ -362,12 +367,13 @@ namespace CloudPRNT_Solution.Controllers
                                     return Ok(postresponse);
                                 }
                             }
-                            else{
+                            else
+                            {
                                 bool jobReady = false;
                                 var postresponse = BeginFalsePostResponsePlusClientVersion(jobReady);
                                 return Ok(postresponse);
                             }
-                            
+
 
                         case "410":
                             if (_context.PrintQueue.Any())
@@ -415,11 +421,12 @@ namespace CloudPRNT_Solution.Controllers
                             Console.WriteLine("Error: " + description.ToUpper());
                             break;
                     }
-                    
+
                 }
             }
-            else { //If deviceInfo == null
-                Console.WriteLine("Printer Does not Exist in Database\n\n");
+            else
+            { //If deviceInfo == null
+                Console.WriteLine("Error: Printer Does not Exist in Database " + request.PrinterMAC + " " + DateTime.Now + "\n\n");
             }
             return Ok();
         }
