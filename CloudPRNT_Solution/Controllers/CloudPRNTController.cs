@@ -47,8 +47,8 @@ namespace CloudPRNT_Solution.Controllers
             {
                 jobReady = jobReady,
                 jobToken = token,
-                jobGetUrl = $"http://{Request.Host}/Alternative/AlternativeGet",
-                jobConfirmationUrl = $"http://{Request.Host}/Alternative/AlternativeDelete",
+                jobGetUrl = $"https://{Request.Host}/Alternative/AlternativeGet",
+                jobConfirmationUrl = $"https://{Request.Host}/Alternative/AlternativeDelete",
                 mediaTypes = new List<string>()
             };
             // pollResponse.mediaTypes = new List<string>();
