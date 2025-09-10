@@ -47,15 +47,15 @@ namespace CloudPRNT_Solution.Controllers
             {
                 jobReady = jobReady,
                 jobToken = token,
-                jobGetUrl = $"https://{Request.Host}/Alternative/AlternativeGet",
-                jobConfirmationUrl = $"https://{Request.Host}/Alternative/AlternativeDelete",
+                // jobGetUrl = $"https://{Request.Host}/Alternative/AlternativeGet",
+                // jobConfirmationUrl = $"https://{Request.Host}/Alternative/AlternativeDelete",
                 mediaTypes = new List<string>()
             };
             // pollResponse.mediaTypes = new List<string>();
             pollResponse.mediaTypes.AddRange(Document.GetOutputTypesFromType("text/vnd.star.markup"));
-            Console.WriteLine("jobGetUrl: " + pollResponse.jobGetUrl + "\n\n");
-            Console.WriteLine("jobConfirmationUrl: " + pollResponse.jobConfirmationUrl + "\n\n");
-            Console.WriteLine("mediaTypes: " + string.Join(", ", pollResponse.mediaTypes) + "\n\n");
+            // Console.WriteLine("jobGetUrl: " + pollResponse.jobGetUrl + "\n\n");
+            // Console.WriteLine("jobConfirmationUrl: " + pollResponse.jobConfirmationUrl + "\n\n");
+            // Console.WriteLine("mediaTypes: " + string.Join(", ", pollResponse.mediaTypes) + "\n\n");
             return JsonConvert.SerializeObject(pollResponse, Formatting.Indented);
         }
 
@@ -499,7 +499,9 @@ namespace CloudPRNT_Solution.Controllers
                     markupDoc.convertTo(outputFormat, outputData);
                     //return new FileContentResult(outputData.ToArray(), outputFormat);
 
-                }else if (printQueueItem.OpenDrawer?.ToString() == "no"){
+                }
+                else if (printQueueItem.OpenDrawer?.ToString() == "no")
+                {
                     byte[] OrderContent = Encoding.UTF8.GetBytes(printQueueItem.OrderContent.ToString());
                     ICpDocument markupDoc = Document.GetDocument(OrderContent, "text/vnd.star.markup");
                     markupDoc.convertTo(outputFormat, outputData);
@@ -510,6 +512,7 @@ namespace CloudPRNT_Solution.Controllers
                     // ICpDocument markupDoc = Document.GetDocument(jobData, "text/vnd.star.markup");
                     // markupDoc.convertTo(outputFormat, outputData);
                     // return new FileContentResult(outputData.ToArray(), outputFormat);
+
 
                 }
 
