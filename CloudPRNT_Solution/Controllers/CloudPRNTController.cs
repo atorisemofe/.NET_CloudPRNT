@@ -167,7 +167,61 @@ namespace CloudPRNT_Solution.Controllers
         [HttpPost]
         public async Task<IActionResult> PostCloudPRNT([FromBody] CloudPRNTPostBody request, [FromHeader] CloudPRNTPostHeaders headers)
         {
+
+            // 🔹 Log all incoming request headers
+            Console.WriteLine("=== Incoming Request Headers ===");
+            foreach (var header in Request.Headers)
+            {
+                Console.WriteLine($"{header.Key}: {header.Value}");
+            }
+            Console.WriteLine("================================");
+
+            // 🔹 Check if Authorization header exists
+            if (!Request.Headers.TryGetValue("Authorization", out var authHeader))
+            {
+                Console.WriteLine("⚠️ Authorization header missing\n\n");
+
+                // Add a header prompting for Basic Authentication
+                HttpContext.Response.Headers.Add("WWW-Authenticate", "Basic realm=\"Authentication Required\"");
+                return Unauthorized();
+            }
+
+            // 🔹 Log the Authorization header (optionally decode if Basic auth)
+            Console.WriteLine($"Authorization Header Found: {authHeader}");
+
+            if (authHeader.ToString().StartsWith("Basic ", StringComparison.OrdinalIgnoreCase))
+            {
+                var encoded = authHeader.ToString().Substring("Basic ".Length).Trim();
+
+                try
+                {
+                    var credentialBytes = Convert.FromBase64String(encoded);
+                    var credentials = System.Text.Encoding.UTF8.GetString(credentialBytes);
+
+                    // Format is usually "username:password"
+                    var parts = credentials.Split(':', 2);
+                    var username = parts.Length > 0 ? parts[0] : "";
+                    var password = parts.Length > 1 ? parts[1] : "";
+
+                    // ⚠️ Log only for debugging — avoid logging plaintext passwords in production
+                    Console.WriteLine($"Username: {username}");
+                    Console.WriteLine($"Password: {password}");
+                }
+                catch
+                {
+                    Console.WriteLine("❌ Failed to decode Basic auth credentials.\n\n");
+                }
+            }
+
             var deviceInfo = await _DBcontext.DeviceTable.FirstOrDefaultAsync(d => d.PrinterMac == request.PrinterMAC);
+
+            // //check authentication header
+            // if (!Request.Headers.TryGetValue("Authorization", out var authHeader))
+            // {
+            //     Console.WriteLine("Authorization header missing");
+            //     HttpContext.Response.Headers.Add("WWW-Authenticate","Basic realm=\"Authentication Required\"");
+            //     return Unauthorized();
+            // }
 
             if (deviceInfo != null)
             {
@@ -298,6 +352,7 @@ namespace CloudPRNT_Solution.Controllers
                 else
                 {
                     Console.WriteLine("POST Request Time: " + DateTime.Now);
+                    // Console.WriteLine("Authentication Header: " + headers.Authentication + "\n\n");
                     var code = request.StatusCode.Split("%20")[0];
                     var description = request.StatusCode.Replace("%20", " ");
                     string printerMac = request.PrinterMAC;
