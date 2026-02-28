@@ -53,7 +53,7 @@ namespace CloudPRNT_Solution.Controllers;
 
                 Console.WriteLine($"ClientType Result: {clientTypeResult}");
                 Console.WriteLine($"ClientVersion Result: {clientVersionResult}");
-                Console.WriteLine($"DotWidth (PrintWidth) Result: {dotWidth}");
+                Console.WriteLine($"DotWidth (PrintWidth) Result: {printWidth}");
 
                 // Add your custom logic here using clientTypeResult and clientVersionResult
                 // Query the database to find the existing DeviceTable row
@@ -70,6 +70,7 @@ namespace CloudPRNT_Solution.Controllers;
                     // Save the changes to the database
                     _context.Update(deviceInfo);
                     await _context.SaveChangesAsync();
+                    Console.WriteLine($"Updated device with PrinterMac: {printerMac} with ClientType: {clientTypeResult}, ClientVersion: {clientVersionResult}, PrintWidth: {printWidth}, Status: {status}");
                 }
                 else
                 {

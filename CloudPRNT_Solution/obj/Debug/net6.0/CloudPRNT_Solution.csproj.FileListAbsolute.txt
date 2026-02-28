@@ -1945,3 +1945,4 @@ C:/Users/oakeredolu/Downloads/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_So
 /Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/obj/Debug/net6.0/CloudPRNT_Solution.pdb
 /Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/obj/Debug/net6.0/CloudPRNT_Solution.genruntimeconfig.cache
 /Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/obj/Debug/net6.0/ref/CloudPRNT_Solution.dll
+/Users/oreo/Desktop/Desktop - Oreoluwa’s MacBook Pro/Oreo Sample Apps/CloudPRNT_Solution/CloudPRNT_Solution/CloudPRNT_Solution/bin/Debug/net6.0/wwwroot/cloudprnt-setting.json

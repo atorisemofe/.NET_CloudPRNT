@@ -23,7 +23,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace CloudPRNT_Solution.Controllers
 {
-
+    
     [Route("/CloudPRNT")]
     //[ApiController]
     public class CloudPRNTController : Controller
@@ -159,6 +159,16 @@ namespace CloudPRNT_Solution.Controllers
         {
             Request.Headers.TryGetValue("X-Star-Print-Width", out var printableArea);
             return printableArea;
+        }
+
+        [HttpGet("/cloudprnt-setting.json.json")]
+        public IActionResult GetCloudPRNTSettings()
+        {
+            // Full path to the file
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cloudprnt-setting.json");
+
+            // Return file with proper content type
+            return PhysicalFile(filePath, "application/json");
         }
 
         

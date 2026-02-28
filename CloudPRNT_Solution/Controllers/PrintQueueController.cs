@@ -13,6 +13,7 @@ using MQTTnet.Client;
 using MQTTnet;
 using StarMicronics.CloudPrnt;
 using System.IO;
+using System.Net.Security;
 
 namespace CloudPRNT_Solution.Controllers
 {
@@ -80,18 +81,25 @@ namespace CloudPRNT_Solution.Controllers
             using (var mqttClient = mqttFactory.CreateMqttClient())
             {
                 var mqttClientOptions = new MqttClientOptionsBuilder()
-                    //.WithClientId("OreoluwaPC")
-                    .WithTcpServer("broker.hivemq.com", 1883)
-                    //.WithCredentials("oreoluwa", "#Nigeria245")
-                   // .WithTls(new MqttClientOptionsBuilderTlsParameters
-                   // {
-                   //     UseTls = true, // Enable TLS
-                  //      AllowUntrustedCertificates = true, // You can set this to true if you are using a self-signed certificate
-                  //      CertificateValidationHandler = context => true // Set this to false in production, use a proper certificate validation logic
-                  //  })
-                    .WithCleanSession(true)
-                    //.WithKeepAlivePeriod(TimeSpan.FromSeconds(60)) // Set keep-alive period
-                    .Build();
+                .WithTcpServer("a3u49iypdlbgbs-ats.iot.us-east-2.amazonaws.com", 443)
+                .WithoutPacketFragmentation()
+                .WithTlsOptions(o =>
+                {
+                    o.UseTls();
+
+                    // REQUIRED for AWS IoT custom auth on port 443
+                    o.WithApplicationProtocols(new List<SslApplicationProtocol>
+                    {
+                        new SslApplicationProtocol("mqtt")
+                    });
+
+                    // Force TLS versions AWS supports (helps on some .NET runtimes/OS combos)
+                    o.WithSslProtocols(System.Security.Authentication.SslProtocols.Tls12);
+                })
+                .WithCredentials("cloudPrntServerOreoNetAppPublisher", "oreoawslambdapassword")
+                .WithClientId("cloudPrntServerOreoNetAppPublisher")
+                .WithCleanSession(false)
+                .Build();
 
                 await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
@@ -145,18 +153,25 @@ namespace CloudPRNT_Solution.Controllers
             using (var mqttClient = mqttFactory.CreateMqttClient())
             {
                 var mqttClientOptions = new MqttClientOptionsBuilder()
-                    //.WithClientId("OreoluwaPC")
-                    .WithTcpServer("broker.hivemq.com", 1883)
-                    //.WithCredentials("oreoluwa", "#Nigeria245")
-                    // .WithTls(new MqttClientOptionsBuilderTlsParameters
-                    // {
-                    //     UseTls = true, // Enable TLS
-                    //      AllowUntrustedCertificates = true, // You can set this to true if you are using a self-signed certificate
-                    //      CertificateValidationHandler = context => true // Set this to false in production, use a proper certificate validation logic
-                    //  })
-                    .WithCleanSession(true)
-                    //.WithKeepAlivePeriod(TimeSpan.FromSeconds(60)) // Set keep-alive period
-                    .Build();
+                .WithTcpServer("a3u49iypdlbgbs-ats.iot.us-east-2.amazonaws.com", 443)
+                .WithoutPacketFragmentation()
+                .WithTlsOptions(o =>
+                {
+                    o.UseTls();
+
+                    // REQUIRED for AWS IoT custom auth on port 443
+                    o.WithApplicationProtocols(new List<SslApplicationProtocol>
+                    {
+                        new SslApplicationProtocol("mqtt")
+                    });
+
+                    // Force TLS versions AWS supports (helps on some .NET runtimes/OS combos)
+                    o.WithSslProtocols(System.Security.Authentication.SslProtocols.Tls12);
+                })
+                .WithCredentials("cloudPrntServerOreoNetAppPublisher", "oreoawslambdapassword")
+                .WithClientId("cloudPrntServerOreoNetAppPublisher")
+                .WithCleanSession(false)
+                .Build();
 
                 await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 

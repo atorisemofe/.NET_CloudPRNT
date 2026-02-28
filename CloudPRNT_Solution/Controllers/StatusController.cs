@@ -12,6 +12,7 @@ using SixLabors.ImageSharp.Formats.Png;
 using CloudPRNT_Solution.Controllers;
 using CloudPRNT_Solution.Data;
 using CloudPRNT_Solution.Models;
+using System.Net.Security;
 
 namespace CloudPRNT_Solution.Controllers
 {
@@ -51,9 +52,6 @@ namespace CloudPRNT_Solution.Controllers
             
             }
 
-                
-
-
             // Return a JSON response or any other type of response
             
             return Json(new { success = true, message = "Status Triggered.", mac = mac });
@@ -76,9 +74,25 @@ namespace CloudPRNT_Solution.Controllers
             using (var mqttClient = mqttFactory.CreateMqttClient())
             {
                 var mqttClientOptions = new MqttClientOptionsBuilder()
-                    .WithTcpServer("broker.hivemq.com", 1883)
-                    .WithCleanSession(true)
-                    .Build();
+                .WithTcpServer("a3u49iypdlbgbs-ats.iot.us-east-2.amazonaws.com", 443)
+                .WithoutPacketFragmentation()
+                .WithTlsOptions(o =>
+                {
+                    o.UseTls();
+
+                    // REQUIRED for AWS IoT custom auth on port 443
+                    o.WithApplicationProtocols(new List<SslApplicationProtocol>
+                    {
+                        new SslApplicationProtocol("mqtt")
+                    });
+
+                    // Force TLS versions AWS supports (helps on some .NET runtimes/OS combos)
+                    o.WithSslProtocols(System.Security.Authentication.SslProtocols.Tls12);
+                })
+                .WithCredentials("cloudPrntServerOreoNetAppPublisherStatus", "oreoawslambdapassword")
+                .WithClientId("cloudPrntServerOreoNetAppPublisherStatus")
+                .WithCleanSession(false)
+                .Build();
 
                 await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
@@ -125,9 +139,25 @@ namespace CloudPRNT_Solution.Controllers
             using (var mqttClient = mqttFactory.CreateMqttClient())
             {
                 var mqttClientOptions = new MqttClientOptionsBuilder()
-                    .WithTcpServer("broker.hivemq.com", 1883)
-                    .WithCleanSession(true)
-                    .Build();
+                .WithTcpServer("a3u49iypdlbgbs-ats.iot.us-east-2.amazonaws.com", 443)
+                .WithoutPacketFragmentation()
+                .WithTlsOptions(o =>
+                {
+                    o.UseTls();
+
+                    // REQUIRED for AWS IoT custom auth on port 443
+                    o.WithApplicationProtocols(new List<SslApplicationProtocol>
+                    {
+                        new SslApplicationProtocol("mqtt")
+                    });
+
+                    // Force TLS versions AWS supports (helps on some .NET runtimes/OS combos)
+                    o.WithSslProtocols(System.Security.Authentication.SslProtocols.Tls12);
+                })
+                .WithCredentials("cloudPrntServerOreoNetAppPublisherClientAction", "oreoawslambdapassword")
+                .WithClientId("cloudPrntServerOreoNetAppPublisherClientAction")
+                .WithCleanSession(false)
+                .Build();
 
                 await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
