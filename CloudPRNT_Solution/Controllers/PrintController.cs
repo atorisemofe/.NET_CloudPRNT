@@ -179,7 +179,7 @@ namespace CloudPRNT_Solution.Controllers
                             else
                             {
                                 payload["jobType"] = jobType;
-                                payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
+                                payload["mediaTypes"] = new List<string> { "text/plain" };
 
                                 // //test flawless printRaw data
                                 // StringBuilder job = new StringBuilder();
