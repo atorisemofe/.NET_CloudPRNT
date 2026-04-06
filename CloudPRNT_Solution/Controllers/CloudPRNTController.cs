@@ -506,24 +506,24 @@ namespace CloudPRNT_Solution.Controllers
         [HttpGet("PassURL")]
         public IActionResult GetCloudPRNTPassURL([FromQuery] CloudPRNTGETQuery request)
         {
-            Console.WriteLine("MQTT Triggered GET Request: " + request.Token + "\nGET Request Time: " + DateTime.Now + "\n\n\n");
+            Console.WriteLine("MQTT (PassURL) Triggered GET Request: " + request.Token + "\nGET Request Time: " + DateTime.Now + "\n\n\n");
             
-            var outputData = new MemoryStream();
-            var outputFormat = "application/vnd.star.starprnt";
+            // var outputData = new MemoryStream();
+            // var outputFormat = "application/vnd.star.starprnt";
             
-            StringBuilder data = new StringBuilder();
-            data.Append("[align: centre]");
-            data.Append("[image: url https://www.breckenridge-jewels.com/export/appsalereceipt?id=94898&format=image]");
-            data.Append("[cut: feed; partial]");
+            // StringBuilder data = new StringBuilder();
+            // data.Append("[align: centre]");
+            // data.Append("[image: url https://www.breckenridge-jewels.com/export/appsalereceipt?id=94898&format=image]");
+            // data.Append("[cut: feed; partial]");
             
-            byte[] jobData = Encoding.UTF8.GetBytes(data.ToString());
+            // byte[] jobData = Encoding.UTF8.GetBytes(data.ToString());
             
-            ICpDocument markupDoc = Document.GetDocument(jobData, "text/vnd.star.markup");
-            markupDoc.convertTo(outputFormat, outputData);
+            // ICpDocument markupDoc = Document.GetDocument(jobData, "text/vnd.star.markup");
+            // markupDoc.convertTo(outputFormat, outputData);
             
-            return new FileContentResult(outputData.ToArray(), outputFormat);
-            // string printDataText = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Pass URL.";
-            // return Ok(printDataText);
+            // return new FileContentResult(outputData.ToArray(), outputFormat);
+            string printDataText = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Pass URL.\n\n";
+            return Ok(printDataText);
         }
 
         // GET: /CloudPRNT
