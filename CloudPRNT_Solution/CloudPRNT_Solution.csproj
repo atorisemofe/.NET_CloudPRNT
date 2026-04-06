@@ -45,7 +45,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <Target Name="RemoveQuarantine" AfterTargets="Build" Condition="'$(RuntimeIdentifier)' == '' AND '$(OS)' == 'Unix'">
+  <!-- <Target Name="RemoveQuarantine" AfterTargets="Build" Condition="'$(RuntimeIdentifier)' == '' AND '$(OS)' == 'Unix'">
   <Exec Command="xattr -r -d com.apple.quarantine &quot;$(TargetDir)&quot;" />
-</Target>
+</Target> -->
 </Project>
