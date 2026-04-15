@@ -94,32 +94,46 @@ namespace CloudPRNT_Solution.Controllers
                 .WithCleanSession(false)
                 .Build();
 
-                await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
+                try {
+                    await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
-                var topic = "star/cloudprnt/to-device/" + mac + "/" + method;
-                var payload = new Dictionary<string, object>();
-                payload["title"] = method;
+                    var topic = "star/cloudprnt/to-device/" + mac + "/" + method;
+                    var payload = new Dictionary<string, object>();
+                    payload["title"] = method;
 
 
-                Console.WriteLine(topic);
+                    Console.WriteLine(topic);
 
-                 // Serialize the payload to a JSON string.
-                string jsonPayload = JsonSerializer.Serialize(payload);
+                    // Serialize the payload to a JSON string.
+                    string jsonPayload = JsonSerializer.Serialize(payload);
 
-                // Convert the JSON string to a byte array.
-                byte[] payloadBytes = Encoding.UTF8.GetBytes(jsonPayload);
-                
+                    // Convert the JSON string to a byte array.
+                    byte[] payloadBytes = Encoding.UTF8.GetBytes(jsonPayload);
+                    
 
-                var applicationMessage = new MqttApplicationMessageBuilder()
-                    .WithTopic(topic)
-                    .WithPayload(payloadBytes)
-                    .Build();
+                    var applicationMessage = new MqttApplicationMessageBuilder()
+                        .WithTopic(topic)
+                        .WithPayload(payloadBytes)
+                        .Build();
 
-                await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
+                    await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
 
-                await mqttClient.DisconnectAsync();
+                    await mqttClient.DisconnectAsync();
 
-                Console.WriteLine("MQTT status application message is published.");
+                    Console.WriteLine("MQTT status application message is published.");
+                }
+                catch (MQTTnet.Adapter.MqttConnectingFailedException ex)
+                {
+                    Console.WriteLine($"MQTT connection failed: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+                finally
+                {
+                    await mqttClient.DisconnectAsync();
+                }
             }
         }
 
@@ -159,38 +173,52 @@ namespace CloudPRNT_Solution.Controllers
                 .WithCleanSession(false)
                 .Build();
 
-                await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
+                try {
+                    await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
-                var topic = "star/cloudprnt/to-device/" + mac + "/" + method;
+                    var topic = $"star/cloudprnt/to-device/{mac}/{method}";
+                    
+                    var payload = new
+                    {
+                        title = "order-client-action",
+                        clientAction = new[]
+                            {
+                                new { request = "ClientType", options = "" },
+                                new { request = "ClientVersion", options = ""},
+                                new { request = "PageInfo", options = ""}
+                            }
+                    };
+
                 
-                var payload = new
+                    // Serialize the payload to a JSON string.
+                    string jsonPayload = JsonSerializer.Serialize(payload);
+
+                    // Convert the JSON string to a byte array.
+                    byte[] payloadBytes = Encoding.UTF8.GetBytes(jsonPayload);
+
+                    var applicationMessage = new MqttApplicationMessageBuilder()
+                        .WithTopic(topic)
+                        .WithPayload(payloadBytes)
+                        .Build();
+
+                    await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
+
+                    await mqttClient.DisconnectAsync();
+
+                    Console.WriteLine("MQTT application message is published. ");
+                }
+                catch (MQTTnet.Adapter.MqttConnectingFailedException ex)
                 {
-                    title = "order-client-action",
-                    clientAction = new[]
-                        {
-                            new { request = "ClientType", options = "" },
-                            new { request = "ClientVersion", options = ""},
-                            new { request = "PageInfo", options = ""}
-                        }
-                };
-
-               
-                // Serialize the payload to a JSON string.
-                string jsonPayload = JsonSerializer.Serialize(payload);
-
-                // Convert the JSON string to a byte array.
-                byte[] payloadBytes = Encoding.UTF8.GetBytes(jsonPayload);
-
-                var applicationMessage = new MqttApplicationMessageBuilder()
-                    .WithTopic(topic)
-                    .WithPayload(payloadBytes)
-                    .Build();
-
-                await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
-
-                await mqttClient.DisconnectAsync();
-
-                Console.WriteLine("MQTT application message is published. ");
+                    Console.WriteLine($"MQTT connection failed: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+                finally
+                {
+                    await mqttClient.DisconnectAsync();
+                }
             }
         }
     }
