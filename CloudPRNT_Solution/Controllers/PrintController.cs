@@ -202,7 +202,7 @@ namespace CloudPRNT_Solution.Controllers
                         {
                             payload["jobType"] = jobType;
                             payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
-                            payload["printData"] = "https://cloudprnt-solution-1e68.onrender.com/CloudPRNT/PassURL";
+                            payload["printData"] = "http://192.168.86.248:7148/CloudPRNT/PassURL";
                             payload["printerControl"] = printerControl;
                         }
                     }

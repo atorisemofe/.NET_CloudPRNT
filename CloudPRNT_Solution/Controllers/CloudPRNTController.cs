@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StarMicronics.CloudPrnt;
+using StarMicronics.StarDocumentMarkup; 
 using StarMicronics.CloudPrnt.CpMessage;
 using CloudPRNT_Solution.Data;
 using CloudPRNT_Solution.Models;
@@ -512,10 +513,54 @@ namespace CloudPRNT_Solution.Controllers
             // var outputFormat = "application/vnd.star.starprnt";
             
             // StringBuilder data = new StringBuilder();
-            // data.Append("[align: centre]");
-            // data.Append("[image: url https://www.breckenridge-jewels.com/export/appsalereceipt?id=94898&format=image]");
-            // data.Append("[cut: feed; partial]");
-            
+            // data.Append("[comment: This is the header of the receipt containing logo of the winery and location]\n");
+            // data.Append("[align: center]\n");
+            // data.Append("[image: url https://star-emea.com/wp-content/uploads/2015/01/logo.jpg; width 60%; min-width 48mm]\n");
+            // data.Append("[bold: on]\\");
+            // data.Append("Customer Copy\n Sale\n\nDemo Winery - Clearant\nGreen Bay Testing Room\n");
+            // data.Append("[bold: off]\\");
+            // data.Append("2598 Parkweed Drive\nGreen Bay, WI 54304\n");
+            // data.Append("[comment: This is information on the merchant, terminal and cashier for the sale]\n");
+            // data.Append("[align: left]\n");
+            // data.Append("Merchant ID: 65880000023\n");
+            // data.Append("Terminal #: 02\n");
+            // data.Append("Cahier: Nick Varga\n");
+            // data.Append("[comment: This is information about the purchase items]\n");
+            // data.Append("[bold: on]\n");
+            // data.Append("[fixedWidth: text Item Name; width 20; align left]");
+            // data.Append("[fixedWidth: text QTY; width 5; align left]");
+            // data.Append("[fixedWidth: text Price; width 10; align left]");
+            // data.Append("[fixedWidth: text Ext Price; width 10; align right]\n");
+            // data.Append("[underline: on][sp: c 48][underline: off]\n");
+            // data.Append("[bold: off]\n");
+
+            // data.Append("[fixedWidth: text VA is for Lovers; width 20; et end; align left]");
+            // data.Append("[fixedWidth: text 1; width 5; align left]");
+            // data.Append("[fixedWidth: text $22.00; width 10; align left]");
+            // data.Append("[fixedWidth: text $22.00; width 10; align right]\n");
+
+            // data.Append("[fixedWidth: text VA is for Lovers; width 20; et end; align left]");
+            // data.Append("[fixedWidth: text 2; width 5; align left]");
+            // data.Append("[fixedWidth: text $40.00; width 10; align left]");
+            // data.Append("[fixedWidth: text $40.00; width 10; align right]\n");
+            // data.Append("[underline: on][sp: c 48][underline: off]\n");
+
+            // data.Append("[comment: This is information on the various sales tax and loyalty discounts]\n");
+            // data.Append("[col: indent 10mm]");
+            // data.Append("[column: left Item Total; right $62.00]\n");
+            // data.Append("[column: left Discount (0.0%); right $0.00]\n");
+            // data.Append("[column: left Subtotal: ; right $62.00]\n");
+            // data.Append("[column: left Sales Tax (10.227%); right $2.25]\n");
+            // data.Append("[column: left Excise Tax; right $0.00]\n");
+            // data.Append("[column: left Local Tax; right $0.10]\n");
+            // data.Append("[column: left Test Tax; right $0.44]\n");
+            // data.Append("[column: left Total Tax; right $2.79]\n");
+            // data.Append("[column: left S&H:; right $0.00]\n");
+            // data.Append("[column: left Receipt Total; right $64.79]\n");
+            // data.Append("[column: left Cash Collected; right $64.79]\n");
+            // data.Append("[column: left Change:; right $0.00]\n");
+
+            // data.Append("[cut]");            
             // byte[] jobData = Encoding.UTF8.GetBytes(data.ToString());
             
             // ICpDocument markupDoc = Document.GetDocument(jobData, "text/vnd.star.markup");
@@ -533,7 +578,7 @@ namespace CloudPRNT_Solution.Controllers
         {
 
             var outputData = new MemoryStream();
-            var outputFormat = "application/vnd.star.starprnt";
+            var outputFormat = request.Type != null ? request.Type : "application/vnd.star.starprnt";
 
             var printableArea = GetPrintableArea();
             var printableAreaDots = Int32.Parse(printableArea) * 8;
@@ -542,6 +587,9 @@ namespace CloudPRNT_Solution.Controllers
 
             string filenames = request.Token;
             string macadd = request.Mac;
+            string mediaType = request.Type;
+
+            Console.WriteLine("GET Request Token: " + request.Token + "\nGET Request Mac: " + request.Mac + "\nGET Request Type: " + request.Type + "\nGET Request Time: " + DateTime.Now + "\n\n\n");
 
             if (filenames != null){
                 printQueueItem = _context.PrintQueue.First(m => m.OrderName == filenames);
@@ -550,8 +598,6 @@ namespace CloudPRNT_Solution.Controllers
             }
             
             
-            Console.WriteLine("GET Filename: " + request.Token + "\nGET Request Time: " + DateTime.Now + "\n\n\n");
-
             if (printQueueItem != null)
             {
                 Console.WriteLine("File Exists in GET");

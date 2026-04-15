@@ -16,7 +16,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.12",
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.11",
-          "StarMicronics.CloudPRNT-Utility": "1.1.2"
+          "StarMicronics.CloudPRNT-Utility": "2.0.1"
         },
         "runtime": {
           "CloudPRNT_Solution.dll": {}
@@ -53,6 +53,55 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.7.0.0",
             "fileVersion": "1.700.22.46903"
+          }
+        }
+      },
+      "FSharp.Core/8.0.400": {
+        "runtime": {
+          "lib/netstandard2.1/FSharp.Core.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.4.24.35102"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.1/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.1/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.1/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.1/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.1/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.1/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.1/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.1/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.1/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.1/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.1/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.1/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
           }
         }
       },
@@ -151,14 +200,14 @@
           "Microsoft.AspNetCore.Http.Connections.Common": "1.1.0",
           "Microsoft.AspNetCore.Routing": "2.2.0",
           "Microsoft.AspNetCore.WebSockets": "2.2.0",
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "System.Security.Principal.Windows": "5.0.0"
         }
       },
       "Microsoft.AspNetCore.Http.Connections.Common/1.1.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Connections.Abstractions": "2.2.0",
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "System.Buffers": "4.5.0"
         }
       },
@@ -207,7 +256,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Connections.Abstractions": "2.2.0",
           "Microsoft.Extensions.Options": "7.0.0",
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "System.Buffers": "4.5.0"
         }
       },
@@ -225,7 +274,7 @@
       "Microsoft.AspNetCore.SignalR.Protocols.Json/1.1.0": {
         "dependencies": {
           "Microsoft.AspNetCore.SignalR.Common": "1.1.0",
-          "Newtonsoft.Json": "13.0.1"
+          "Newtonsoft.Json": "13.0.3"
         }
       },
       "Microsoft.AspNetCore.WebSockets/2.2.0": {
@@ -1056,7 +1105,7 @@
           "Microsoft.CodeAnalysis.VisualBasic.Features": "4.0.0",
           "Microsoft.CodeAnalysis.VisualBasic.Workspaces": "4.0.0",
           "Microsoft.CodeAnalysis.Workspaces.MSBuild": "4.0.0",
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "NuGet.Packaging": "6.3.1",
           "NuGet.ProjectModel": "6.3.1",
           "System.Collections.Immutable": "6.0.0",
@@ -1434,7 +1483,7 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "6.0.11",
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.1",
           "System.Private.Uri": "4.3.2",
@@ -1502,7 +1551,7 @@
           "Microsoft.Build": "17.3.2",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.0.0",
           "Microsoft.DotNet.Scaffolding.Shared": "6.0.11",
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.1",
           "System.Private.Uri": "4.3.2",
@@ -1632,11 +1681,11 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.3": {
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "13.0.0.0",
-            "fileVersion": "13.0.1.25517"
+            "fileVersion": "13.0.3.27908"
           }
         }
       },
@@ -1698,7 +1747,7 @@
       },
       "NuGet.Packaging/6.3.1": {
         "dependencies": {
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "NuGet.Configuration": "6.3.1",
           "NuGet.Versioning": "6.3.1",
           "System.Security.Cryptography.Cng": "5.0.0",
@@ -1789,11 +1838,15 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
-      "SixLabors.ImageSharp/1.0.4": {
+      "SixLabors.ImageSharp/2.1.11": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
+          "System.Text.Encoding.CodePages": "6.0.0"
+        },
         "runtime": {
           "lib/netcoreapp3.1/SixLabors.ImageSharp.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.4.0"
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.11.0"
           }
         }
       },
@@ -1950,16 +2003,35 @@
           }
         }
       },
-      "StarMicronics.CloudPRNT-Utility/1.1.2": {
+      "StarMicronics.CloudPRNT-Utility/2.0.1": {
         "dependencies": {
-          "Newtonsoft.Json": "13.0.1",
-          "SixLabors.ImageSharp": "1.0.4",
+          "Newtonsoft.Json": "13.0.3",
+          "SixLabors.ImageSharp": "2.1.11",
+          "StarMicronics.StarDocumentMarkup-Utility": "2.0.1",
           "System.Text.Encoding.CodePages": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/StarCloudPRNTUtility.dll": {
-            "assemblyVersion": "1.1.2.0",
-            "fileVersion": "1.1.2.0"
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
+          }
+        }
+      },
+      "StarMicronics.StarDocumentMarkup-Utility/2.0.1": {
+        "dependencies": {
+          "FSharp.Core": "8.0.400",
+          "Newtonsoft.Json": "13.0.3",
+          "SixLabors.ImageSharp": "2.1.11",
+          "System.Text.Encoding.CodePages": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/PrintfFormatter.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/netstandard2.0/StarDocumentMarkupUtility.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       },
@@ -2833,6 +2905,13 @@
       "path": "azure.identity/1.7.0",
       "hashPath": "azure.identity.1.7.0.nupkg.sha512"
     },
+    "FSharp.Core/8.0.400": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kHMdDDmlZl98tujgHCmL8/HNH9VKbxsRMC9s7wbwr4noR40SSa5D4d00yF8cMK52s8jabVuiLLcrUw9r+PkKDQ==",
+      "path": "fsharp.core/8.0.400",
+      "hashPath": "fsharp.core.8.0.400.nupkg.sha512"
+    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -3512,12 +3591,12 @@
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
     },
-    "Newtonsoft.Json/13.0.1": {
+    "Newtonsoft.Json/13.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
-      "path": "newtonsoft.json/13.0.1",
-      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
     "NuGet.Common/6.3.1": {
       "type": "package",
@@ -3694,12 +3773,12 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
-    "SixLabors.ImageSharp/1.0.4": {
+    "SixLabors.ImageSharp/2.1.11": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-H2rPiEr2ddBOltOuqRYhpLBAsQXDAhbzMMhhuksnBG2oefup1MXMchALe7yYkKJksNbtxbZHKeM6dn/68I75qw==",
-      "path": "sixlabors.imagesharp/1.0.4",
-      "hashPath": "sixlabors.imagesharp.1.0.4.nupkg.sha512"
+      "sha512": "sha512-tUvsejgzUmEbES114yLseRxmFiYlQbH5RyaYXUQsEL7ksDo1/kW+ZL1EfD6iSUfxj7LHU8p110oFvSrRfsaWSQ==",
+      "path": "sixlabors.imagesharp/2.1.11",
+      "hashPath": "sixlabors.imagesharp.2.1.11.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.4": {
       "type": "package",
@@ -3729,12 +3808,19 @@
       "path": "sqlitepclraw.provider.e_sqlite3/2.1.4",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.2.1.4.nupkg.sha512"
     },
-    "StarMicronics.CloudPRNT-Utility/1.1.2": {
+    "StarMicronics.CloudPRNT-Utility/2.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rNjCMVdAZLzgUJ+a29NhM8lsi757cJFuipe9CFe6/JBnbjFxpGUpdfZrBRHCNo1odWlxONJrAH2MDy3kJQXbzw==",
-      "path": "starmicronics.cloudprnt-utility/1.1.2",
-      "hashPath": "starmicronics.cloudprnt-utility.1.1.2.nupkg.sha512"
+      "sha512": "sha512-qQdOp5TSkfcA/5+havPoVNduIvb2KTLDMI//Zxlzbhv1yWvKkQuaKyQvz9tDJxIlqqEgkVEUxoxEs9+H2fBREA==",
+      "path": "starmicronics.cloudprnt-utility/2.0.1",
+      "hashPath": "starmicronics.cloudprnt-utility.2.0.1.nupkg.sha512"
+    },
+    "StarMicronics.StarDocumentMarkup-Utility/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0t5eC34KVHOQitRwaSHXYaFtwWQSFKIT5gunIJcuYI/b/78PZoN88ufoakRoLU0qaJr0pAjFOhyhM+RCPfCzVw==",
+      "path": "starmicronics.stardocumentmarkup-utility/2.0.1",
+      "hashPath": "starmicronics.stardocumentmarkup-utility.2.0.1.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",

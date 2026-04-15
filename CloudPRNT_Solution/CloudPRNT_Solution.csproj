@@ -29,7 +29,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />
     <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="4.3.6.1152" />
-    <PackageReference Include="StarMicronics.CloudPRNT-Utility" Version="1.1.2" />
+    <PackageReference Include="StarMicronics.CloudPRNT-Utility" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />

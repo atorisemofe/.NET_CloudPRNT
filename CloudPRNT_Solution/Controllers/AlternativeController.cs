@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StarMicronics.CloudPrnt;
+using StarMicronics.StarDocumentMarkup; 
 using StarMicronics.CloudPrnt.CpMessage;
 using CloudPRNT_Solution.Data;
 using CloudPRNT_Solution.Models;
