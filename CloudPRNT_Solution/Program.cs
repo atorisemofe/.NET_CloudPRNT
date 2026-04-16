@@ -6,6 +6,7 @@ using CloudPRNT_Solution.Controllers;
 using CloudPRNT_Solution;
 using Microsoft.AspNetCore.SignalR;
 using CloudPRNT_Solution.Hubs;
+using CloudPRNT_Solution.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,7 @@ builder.Services.AddDbContext<LocationTableContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<MqttMessageRecieved>(); // Add this line
+builder.Services.AddSingleton<MqttClientService>();
 // builder.Services.AddSingleton<IHostedService, PollingScheduler>();
 
 var app = builder.Build();
@@ -61,11 +63,12 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+var mqttClientService = app.Services.GetRequiredService<MqttClientService>();
 // Configure the Client_Subscribe with the service provider
 Client_Subscribe.Configure(app.Services);
 
 // Start the MQTT client connection when the application starts
-await Client_Subscribe.Connect_Client();
+await Client_Subscribe.Connect_Client(mqttClientService);
 
 app.MapHub<NotificationHub>("/notificationHub"); // Use SignalR
 

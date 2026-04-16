@@ -13,16 +13,20 @@ using CloudPRNT_Solution.Controllers;
 using CloudPRNT_Solution.Data;
 using CloudPRNT_Solution.Models;
 using System.Net.Security;
+using CloudPRNT_Solution.Services;
 
 namespace CloudPRNT_Solution.Controllers
 {
     public class StatusController : Controller
     {
         private readonly PrintQueueContext _context;
+        private readonly MqttClientService _mqttClientService;
 
-        public StatusController(PrintQueueContext context)
+
+        public StatusController(PrintQueueContext context, MqttClientService mqttClientService)
         {
             _context = context;
+            _mqttClientService = mqttClientService;
         }
         public IActionResult Index(string mac)
         {

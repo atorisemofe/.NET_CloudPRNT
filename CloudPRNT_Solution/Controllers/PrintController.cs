@@ -13,16 +13,19 @@ using CloudPRNT_Solution.Controllers;
 using CloudPRNT_Solution.Data;
 using CloudPRNT_Solution.Models;
 using System.Net.Security;
+using CloudPRNT_Solution.Services;
 
 namespace CloudPRNT_Solution.Controllers
 {
     public class PrintController : Controller
     {
         private readonly PrintQueueContext _context;
+        private readonly MqttClientService _mqttClientService;
 
-        public PrintController(PrintQueueContext context)
+        public PrintController(PrintQueueContext context, MqttClientService mqttClientService)
         {
             _context = context;
+            _mqttClientService = mqttClientService;
         }
         public IActionResult Index(string mac)
         {
@@ -115,129 +118,87 @@ namespace CloudPRNT_Solution.Controllers
             return Json(new { success = true, message = "Print triggered.", mac = mac });
         } 
 
-        public static async Task Publish_Application_Message(string mac, string method, string jobType, string jobToken, string drawerAction)
+        public async Task Publish_Application_Message(string mac, string method, string jobType, string jobToken, string drawerAction)
         {
-            var mqttFactory = new MqttFactory();
+            var client = _mqttClientService.Client;
 
-            using (var mqttClient = mqttFactory.CreateMqttClient())
+            if (client == null || !client.IsConnected)
             {
-                // var mqttClientOptions = new MqttClientOptionsBuilder()
-                //     .WithTcpServer("broker.hivemq.com",1883)
-                //     .WithCleanSession(true)
-                //     .Build();
-                // AWS IoT Core MQTT settings
-                var mqttClientOptions = new MqttClientOptionsBuilder()
-                .WithTcpServer("a3u49iypdlbgbs-ats.iot.us-east-2.amazonaws.com", 443)
-                .WithoutPacketFragmentation()
-                .WithTlsOptions(o =>
+                Console.WriteLine("[MQTT] Client not ready for publishing.");
+                return;
+            }
+
+            var topic = $"star/cloudprnt/to-device/{mac}/{method}";
+
+            // ... your existing payload building logic unchanged ...
+            var payload = new Dictionary<string, object>();
+            var printerControl = new Dictionary<string, object>();
+            var cutter = new Dictionary<string, object>
+            {
+                ["type"] = "partial",
+                ["feed"] = true
+            };
+
+            printerControl["cutter"] = cutter;
+
+            if (method == "print-job")
+            {
+                payload["title"] = method;
+                payload["jobToken"] = jobToken;
+
+                if (jobType == "raw")
                 {
-                    o.UseTls();
-
-                    // REQUIRED for AWS IoT custom auth on port 443
-                    o.WithApplicationProtocols(new List<SslApplicationProtocol>
+                    if (drawerAction == "open-drawer")
                     {
-                        new SslApplicationProtocol("mqtt")
-                    });
-
-                    // Force TLS versions AWS supports (helps on some .NET runtimes/OS combos)
-                    o.WithSslProtocols(System.Security.Authentication.SslProtocols.Tls12);
-                })
-                .WithCredentials("cloudPrntServerOreoNetAppPublisher", "oreoawslambdapassword")
-                .WithClientId("cloudPrntServerOreoNetAppPublisher")
-                .WithCleanSession(false)
-                .Build();
-
-                try
-                {
-                    await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-
-                    var topic = $"star/cloudprnt/to-device/{mac}/{method}";
-
-                    var payload = new Dictionary<string, object>();
-                    var printerControl = new Dictionary<string, object>();
-                    var cutter = new Dictionary<string, object>
-                    {
-                        ["type"] = "partial",
-                        ["feed"] = true
-                    };
-
-                    printerControl["cutter"] = cutter;
-
-                    if (method == "print-job")
-                    {
-                        payload["title"] = method;
-                        payload["jobToken"] = jobToken;
-
-                        if (jobType == "raw")
-                        {
-                            if (drawerAction == "open-drawer")
-                            {
-                                payload["jobType"] = jobType;
-                                payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
-                                payload["printData"] = "Bw=="; // Base64 encoded drawer open command
-                            }
-                            else
-                            {
-                                payload["jobType"] = jobType;
-                                payload["mediaTypes"] = new List<string> { "text/plain" };
-
-                                // //test flawless printRaw data
-                                // StringBuilder job = new StringBuilder();
-                                // job.Append("[align: centre]\n");
-                                // job.Append($"[image: url https://cloudprint.flawlessretail.com/receipt.png]");
-                                // job.Append("[cut: feed; partial]");
-                                // byte[] jobData = Encoding.UTF8.GetBytes(job.ToString());
-                                // // get the requested output media type from the query string
-                                // using (var ms = new MemoryStream())
-                                // {
-                                //     StarMicronics.CloudPrnt.Document.Convert(jobData, "text/vnd.star.markup", ms, "application/vnd.star.starprnt", null);
-                                //     payload["printData"] = Convert.ToBase64String(ms.ToArray());
-                                // }
-
-                                payload["printData"] = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Full MQTT.\n\n";
-                                payload["printerControl"] = printerControl;
-                            }
-                        }
-                        else if (jobType == "url")
-                        {
-                            payload["jobType"] = jobType;
-                            payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
-                            payload["printData"] = "https://cloudprnt-solution-1e68.onrender.com/CloudPRNT/PassURL";
-                            payload["printerControl"] = printerControl;
-                        }
+                        payload["jobType"] = jobType;
+                        payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
+                        payload["printData"] = "Bw=="; // Base64 encoded drawer open command
                     }
-                    else if (method == "request-post")
+                    else
                     {
-                        payload["title"] = method;
+                        payload["jobType"] = jobType;
+                        payload["mediaTypes"] = new List<string> { "text/plain" };
+
+                        // //test flawless printRaw data
+                        // StringBuilder job = new StringBuilder();
+                        // job.Append("[align: centre]\n");
+                        // job.Append($"[image: url https://cloudprint.flawlessretail.com/receipt.png]");
+                        // job.Append("[cut: feed; partial]");
+                        // byte[] jobData = Encoding.UTF8.GetBytes(job.ToString());
+                        // // get the requested output media type from the query string
+                        // using (var ms = new MemoryStream())
+                        // {
+                        //     StarMicronics.CloudPrnt.Document.Convert(jobData, "text/vnd.star.markup", ms, "application/vnd.star.starprnt", null);
+                        //     payload["printData"] = Convert.ToBase64String(ms.ToArray());
+                        // }
+
+                        payload["printData"] = "StarMicoronics.\n\nCloudPRNT Version MQTT\n\nPrint by Full MQTT.\n\n";
+                        payload["printerControl"] = printerControl;
                     }
-
-                    // Serialize the payload to a JSON string.
-                    string jsonPayload = JsonSerializer.Serialize(payload);
-
-                    // Convert the JSON string to a byte array.
-                    byte[] payloadBytes = Encoding.UTF8.GetBytes(jsonPayload);
-
-                    var applicationMessage = new MqttApplicationMessageBuilder()
-                        .WithTopic(topic)
-                        .WithPayload(payloadBytes)
-                        .Build();
-
-                    await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
-                    Console.WriteLine("MQTT application message is published.");
                 }
-                catch (MQTTnet.Adapter.MqttConnectingFailedException ex)
+                else if (jobType == "url")
                 {
-                    Console.WriteLine($"MQTT connection failed: {ex.Message}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"An error occurred: {ex.Message}");
-                }
-                finally
-                {
-                    await mqttClient.DisconnectAsync();
+                    payload["jobType"] = jobType;
+                    payload["mediaTypes"] = new List<string> { "application/vnd.star.starprnt" };
+                    payload["printData"] = "https://cloudprnt-solution-1e68.onrender.com/CloudPRNT/PassURL";
+                    payload["printerControl"] = printerControl;
                 }
             }
+            else if (method == "request-post")
+            {
+                payload["title"] = method;
+            }
+            string jsonPayload = JsonSerializer.Serialize(payload);
+            byte[] payloadBytes = Encoding.UTF8.GetBytes(jsonPayload);
+
+            var applicationMessage = new MqttApplicationMessageBuilder()
+                .WithTopic(topic)
+                .WithPayload(payloadBytes)
+                .Build();
+
+            // ManagedMqttClient queues messages internally — no ConnectAsync needed
+            await client.EnqueueAsync(applicationMessage);
+            Console.WriteLine("MQTT message enqueued via shared client.");
         }
 
     }
